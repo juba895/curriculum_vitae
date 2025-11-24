@@ -1,0 +1,16 @@
+# CV PDF Generator Requirements
+# Abhängigkeiten für die PDF-Generierung mit Playwright
+
+# Hauptabhängigkeit für Browser-Automatisierung und PDF-Generierung
+playwright>=1.40.0
+
+# Task-Runner für automatisierte Befehle
+invoke>=2.2.0
+
+# Standard Python-Module (bereits in Python enthalten):
+# - asyncio (für asynchrone Programmierung)
+# - pathlib (für Dateipfad-Handling)
+
+# Zusätzliche nützliche Pakete für Entwicklung/Debugging (optional)
+# requests>=2.31.0  # für HTTP-Requests (falls benötigt)
+# beautifulsoup4>=4.12.0  # für HTML-Parsing (falls benötigt)
