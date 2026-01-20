@@ -1,342 +1,1118 @@
 <!DOCTYPE HTML>
-<!--
-	Read Only by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html lang="de">
 	<head>
 		<title>Julian Banek - Software Engineer | CV</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="Julian Banek - Software Engineer mit 12+ Jahren Erfahrung in DevOps, CI/CD und Software Architecture. Experte für agile Softwareentwicklung und moderne Build-Pipelines." />
+		<meta name="keywords" content="DevOps, CI/CD, Software Development, Software Architecture, Agile Project Management" />
 		
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="stylesheet" href="assets/css/timeline.css" />
+		<!-- FontAwesome Icons -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 		
 		<!-- Preload critical images -->
 		<link rel="preload" as="image" href="images/avatar.jpg" />
 		<link rel="preload" as="image" href="images/banner.jpg" />
+		
+		<style>
+		/* Inline CSS für sofortige Korrekturen */
+		body {
+			margin: 0;
+			padding: 0;
+			font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+			background: #f8f9fa;
+			color: #333;
+		}
+		
+		/* Sidebar */
+		.sidebar {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 320px;
+			height: 100vh;
+			background: linear-gradient(135deg, #2c3e50 0%, #3a4d63 100%);
+			color: white;
+			padding: 2rem;
+			overflow-y: auto;
+			z-index: 1000;
+			text-align: center;
+		}
+		
+		.sidebar .avatar {
+			width: 120px;
+			height: 120px;
+			border-radius: 50%;
+			margin: 0 auto 1.5rem;
+			border: 4px solid rgba(255,255,255,0.3);
+			overflow: hidden;
+		}
+		
+		.sidebar .avatar img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+		
+		.sidebar h1 {
+			font-size: 1.8rem;
+			margin-bottom: 0.5rem;
+			font-weight: 700;
+		}
+		
+		.sidebar h1 a {
+			color: white;
+			text-decoration: none;
+		}
+		
+		.sidebar .subtitle {
+			color: rgba(255,255,255,0.8);
+			font-style: italic;
+			margin-bottom: 2rem;
+			font-size: 1.1rem;
+		}
+		
+		.sidebar nav ul {
+			list-style: none;
+			padding: 0;
+			margin: 2rem 0;
+		}
+		
+		.sidebar nav li {
+			margin: 0.75rem 0;
+		}
+		
+		.sidebar nav a {
+			display: block;
+			color: rgba(255,255,255,0.8);
+			text-decoration: none;
+			padding: 1rem;
+			border-radius: 25px;
+			transition: all 0.3s ease;
+			font-weight: 500;
+		}
+		
+		.sidebar nav a:hover,
+		.sidebar nav a.active {
+			background: rgba(255,255,255,0.15);
+			color: white;
+			transform: translateX(5px);
+		}
+		
+		.sidebar .social-icons {
+			display: flex;
+			justify-content: center;
+			gap: 1rem;
+			margin-top: 2rem;
+		}
+		
+		.sidebar .social-icons a {
+			color: rgba(255,255,255,0.8);
+			font-size: 1.5rem;
+			width: 45px;
+			height: 45px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border-radius: 50%;
+			background: rgba(255,255,255,0.1);
+			transition: all 0.3s ease;
+			text-decoration: none;
+		}
+		
+		.sidebar .social-icons a:hover {
+			color: white;
+			background: rgba(255,255,255,0.2);
+			transform: translateY(-2px);
+		}
+		
+		/* Main Content */
+		.main-content {
+			margin-left: 320px;
+			min-height: 100vh;
+		}
+		
+		.section {
+			padding: 3rem 0;
+		}
+		
+		.container {
+			max-width: 1000px;
+			margin: 0 auto;
+			padding: 0 2rem;
+		}
+		
+		/* Banner mit Code Animation */
+		.banner {
+			position: relative;
+			width: 100%;
+			height: 400px;
+			overflow: hidden;
+			margin-bottom: 2rem;
+			border-radius: 15px;
+			box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+			background: linear-gradient(135deg, #1a1a1a 0%, #2d3748 100%);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		
+		.banner::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: 
+				linear-gradient(90deg, transparent 79px, rgba(255,255,255,0.03) 81px, rgba(255,255,255,0.03) 82px, transparent 84px),
+				linear-gradient(rgba(255,255,255,0.02) 50%, transparent 50%);
+			background-size: 84px 84px, 42px 42px;
+			animation: codeGrid 20s linear infinite;
+			z-index: 1;
+		}
+		
+		.code-animation {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			font-family: 'Courier New', monospace;
+			font-size: 14px;
+			color: rgba(255,255,255,0.1);
+			overflow: hidden;
+			z-index: 2;
+		}
+		
+		.code-line {
+			position: absolute;
+			white-space: nowrap;
+			animation: codeScroll 15s linear infinite;
+		}
+		
+		.code-line:nth-child(1) { top: 10%; animation-delay: 0s; color: rgba(255, 255, 255, 0.3); }
+		.code-line:nth-child(2) { top: 20%; animation-delay: -2s; color: rgba(255, 255, 255, 0.15); }
+		.code-line:nth-child(3) { top: 30%; animation-delay: -4s; color: rgba(100, 200, 150, 0.25); }
+		.code-line:nth-child(4) { top: 40%; animation-delay: -6s; color: rgba(255, 255, 255, 0.1); }
+		.code-line:nth-child(5) { top: 50%; animation-delay: -8s; color: rgba(120, 180, 220, 0.2); }
+		.code-line:nth-child(6) { top: 60%; animation-delay: -10s; color: rgba(255, 255, 255, 0.12); }
+		.code-line:nth-child(7) { top: 70%; animation-delay: -12s; color: rgba(200, 150, 100, 0.18); }
+		.code-line:nth-child(8) { top: 80%; animation-delay: -14s; color: rgba(255, 255, 255, 0.08); }
+		
+		.banner-content {
+			position: relative;
+			z-index: 3;
+			text-align: center;
+			color: white;
+			padding: 2rem;
+		}
+		
+		.banner-title {
+			font-size: 3rem;
+			font-weight: 700;
+			margin-bottom: 1rem;
+			text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+			animation: fadeInUp 1s ease-out;
+		}
+		
+		.banner-subtitle {
+			font-size: 1.4rem;
+			opacity: 0.9;
+			margin-bottom: 1.5rem;
+			font-weight: 300;
+			text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+			animation: fadeInUp 1s ease-out 0.3s both;
+		}
+		
+		.banner-tech {
+			font-size: 1rem;
+			opacity: 0.8;
+			font-family: 'Courier New', monospace;
+			background: rgba(255,255,255,0.1);
+			padding: 0.8rem 1.5rem;
+			border-radius: 25px;
+			border: 1px solid rgba(255,255,255,0.2);
+			display: inline-block;
+			backdrop-filter: blur(10px);
+			animation: fadeInUp 1s ease-out 0.6s both;
+		}
+		
+		@keyframes codeScroll {
+			0% { transform: translateX(100%); }
+			100% { transform: translateX(-100%); }
+		}
+		
+		@keyframes codeGrid {
+			0% { transform: translateX(0); }
+			100% { transform: translateX(84px); }
+		}
+		
+		@keyframes fadeInUp {
+			from {
+				opacity: 0;
+				transform: translateY(30px);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+		
+		@keyframes typewriter {
+			from {
+				width: 0;
+			}
+			to {
+				width: 100%;
+			}
+		}
+		
+		@keyframes blink {
+			from, to {
+				border-color: transparent;
+			}
+			50% {
+				border-color: #2c3e50;
+			}
+		}
+		
+		.typewriter-text {
+			overflow: hidden;
+			border-right: 3px solid #2c3e50;
+			white-space: nowrap;
+			margin: 0 auto;
+			letter-spacing: .15em;
+			animation: 
+				typewriter 3s steps(30, end),
+				blink .75s step-end infinite;
+			animation-delay: 0.5s;
+			animation-fill-mode: both;
+			display: inline-block;
+		}
+		
+		.banner img {
+			display: none; /* Hide original image */
+		}
+		
+		/* Typography */
+		h2 {
+			font-size: 2.5rem;
+			font-weight: 300;
+			color: #2c3e50;
+			text-align: center;
+			margin-bottom: 2rem;
+			position: relative;
+		}
+		
+		h2::after {
+			content: '';
+			display: block;
+			width: 80px;
+			height: 4px;
+			background: linear-gradient(135deg, #2c3e50 0%, #4a5568 100%);
+			margin: 1rem auto;
+			border-radius: 2px;
+		}
+		
+		h3 {
+			font-size: 1.8rem;
+			color: #2c3e50;
+			margin-bottom: 1.5rem;
+			position: relative;
+			padding-left: 1.5rem;
+		}
+		
+		h3::before {
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 4px;
+			height: 100%;
+			background: linear-gradient(135deg, #2c3e50 0%, #4a5568 100%);
+			border-radius: 2px;
+		}
+		
+		/* Skills Grid */
+		.skills-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+			gap: 2rem;
+			margin: 2rem 0;
+		}
+		
+		.skill-card {
+			background: white;
+			padding: 2rem;
+			border-radius: 15px;
+			box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+			border: 1px solid #e9ecef;
+			transition: all 0.3s ease;
+			text-align: center;
+		}
+		
+		.skill-card:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+		}
+		
+		.skill-card .icon {
+			font-size: 3rem;
+			color: #2c3e50;
+			margin-bottom: 1rem;
+		}
+		
+		.skill-card h4 {
+			font-size: 1.3rem;
+			color: #2c3e50;
+			margin-bottom: 1rem;
+			font-weight: 600;
+		}
+		
+		.skill-card p {
+			color: #666;
+			line-height: 1.6;
+			margin: 0;
+		}
+		
+		.skill-card ul {
+			text-align: left;
+			margin: 0;
+			padding-left: 1.5rem;
+		}
+		
+		.skill-card li {
+			margin-bottom: 0.5rem;
+			color: #666;
+		}
+		
+		/* Info Box */
+		.info-box {
+			background: white;
+			padding: 2rem;
+			border-radius: 15px;
+			box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+			margin: 2rem 0;
+		}
+		
+		.info-list {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+			gap: 1.5rem;
+		}
+		
+		.info-list li {
+			display: flex;
+			align-items: flex-start;
+			gap: 1rem;
+			padding: 1rem;
+			border-radius: 10px;
+			transition: background 0.3s ease;
+		}
+		
+		.info-list li:hover {
+			background: #f8f9fa;
+		}
+		
+		.info-list i {
+			font-size: 1.5rem;
+			color: #2c3e50;
+			flex-shrink: 0;
+			margin-top: 0.2rem;
+		}
+		
+		.info-list strong {
+			display: block;
+			color: #2c3e50;
+			margin-bottom: 0.25rem;
+		}
+		
+		/* Timeline */
+		.timeline {
+			position: relative;
+			max-width: 800px;
+			margin: 3rem auto;
+		}
+		
+		.timeline::before {
+			content: '';
+			position: absolute;
+			width: 4px;
+			background: linear-gradient(135deg, #2c3e50 0%, #4a5568 100%);
+			top: 0;
+			bottom: 0;
+			left: 50%;
+			margin-left: -2px;
+		}
+		
+		.timeline-item {
+			padding: 0;
+			position: relative;
+			background: inherit;
+			width: calc(50% - 15px);
+			margin-bottom: 2rem;
+		}
+		
+		.timeline-item::after {
+			content: '';
+			position: absolute;
+			width: 20px;
+			height: 20px;
+			background: #2c3e50;
+			border: 4px solid white;
+			top: 15px;
+			border-radius: 50%;
+			z-index: 1;
+			box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+		}
+		
+		.timeline-item.left {
+			left: 0;
+		}
+		
+		.timeline-item.left::after {
+			right: -25px;
+		}
+		
+		.timeline-item.right {
+			left: calc(50% + 15px);
+		}
+		
+		.timeline-item.right::after {
+			left: -25px;
+		}
+		
+		.timeline-content {
+			padding: 1.5rem;
+			background: white;
+			border-radius: 10px;
+			box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+			border: 1px solid #e9ecef;
+		}
+		
+		.timeline-date {
+			color: #2c3e50;
+			font-weight: bold;
+			font-size: 0.9rem;
+			margin-bottom: 0.5rem;
+		}
+		
+		.timeline-content h4 {
+			color: #2c3e50;
+			margin-bottom: 0.5rem;
+			font-size: 1.3rem;
+		}
+		
+		.timeline-content h5 {
+			color: #2c3e50;
+			margin-bottom: 1rem;
+			font-weight: 500;
+		}
+		
+		.timeline-content ul {
+			margin: 0;
+			padding-left: 1.5rem;
+		}
+		
+		.timeline-content li {
+			margin-bottom: 0.5rem;
+			color: #666;
+		}
+		
+		/* Responsive */
+		@media (max-width: 980px) {
+			.sidebar {
+				position: relative;
+				width: 100%;
+				height: auto;
+				padding: 2rem;
+			}
+			
+			.main-content {
+				margin-left: 0;
+			}
+			
+			.timeline::before {
+				left: 20px;
+			}
+			
+			.timeline-item {
+				width: 100%;
+				padding-left: 3rem;
+				padding-right: 1rem;
+				margin-right: 0;
+			}
+			
+			.timeline-item.left,
+			.timeline-item.right {
+				left: 0%;
+				padding-left: 3rem;
+				padding-right: 1rem;
+			}
+			
+			.timeline-item::after,
+			.timeline-item.left::after,
+			.timeline-item.right::after {
+				left: 8px;
+				right: auto;
+			}
+			
+			.skills-grid {
+				grid-template-columns: 1fr;
+			}
+		}
+		
+		/* Print Styles */
+		@media print {
+			body {
+				font-size: 12px;
+				line-height: 1.4;
+			}
+			
+			.sidebar {
+				position: relative;
+				width: 100%;
+				height: auto;
+				padding: 1rem;
+				margin-bottom: 1rem;
+				page-break-inside: avoid;
+			}
+			
+			.main-content {
+				margin-left: 0;
+			}
+			
+			.section {
+				padding: 1.5rem 0;
+				page-break-inside: avoid;
+			}
+			
+			.banner {
+				height: 200px;
+				page-break-inside: avoid;
+			}
+			
+			.banner-title {
+				font-size: 2rem;
+			}
+			
+			.banner-subtitle {
+				font-size: 1rem;
+			}
+			
+			.timeline::before {
+				left: 20px;
+			}
+			
+			.timeline-item {
+				width: 100%;
+				padding-left: 2rem;
+				padding-right: 1rem;
+				page-break-inside: avoid;
+				margin-bottom: 1rem;
+				margin-right: 0;
+			}
+			
+			.timeline-item.left,
+			.timeline-item.right {
+				left: 0%;
+				padding-left: 2rem;
+				padding-right: 1rem;
+			}
+			
+			.timeline-item::after,
+			.timeline-item.left::after,
+			.timeline-item.right::after {
+				left: 8px;
+				right: auto;
+			}
+			
+			.skills-grid {
+				grid-template-columns: repeat(2, 1fr);
+				gap: 1rem;
+			}
+			
+			.skill-card {
+				padding: 1rem;
+				page-break-inside: avoid;
+			}
+			
+			.typewriter-text {
+				border-right: none;
+				animation: none;
+			}
+			
+			h2 {
+				font-size: 1.8rem;
+			}
+			
+			h3 {
+				font-size: 1.4rem;
+				padding-left: 1rem;
+			}
+		}
+		</style>
 	</head>
-	<body class="is-preload">
+	<body>
+		<!-- Sidebar -->
+		<div class="sidebar">
+			<div class="avatar">
+				<img src="images/avatar.jpg" alt="Julian Banek - Profilbild" />
+			</div>
+			<h1><a href="#">Julian Banek</a></h1>
+			<p class="subtitle">Software Engineer</p>
+			
+			<nav>
+				<ul>
+					<li><a href="#about" class="active">Über mich</a></li>
+					<li><a href="#skills">Fähigkeiten</a></li>
+					<li><a href="#experience">Berufserfahrung</a></li>
+					<li><a href="#education">Bildung</a></li>
+					<li><a href="#hobbies">Hobbys</a></li>
+				</ul>
+			</nav>
+			
+			<div class="social-icons">
+				<a href="https://www.xing.com/profile/Julian_Banek/" aria-label="Xing Profil">
+					<i class="fab fa-xing"></i>
+				</a>
+				<a href="https://github.com/juba895/curriculum_vitae" aria-label="GitHub Profil">
+					<i class="fab fa-github"></i>
+				</a>
+				<a href="mailto:julian.banek@web.de" aria-label="E-Mail senden">
+					<i class="fas fa-envelope"></i>
+				</a>
+			</div>
+		</div>
 
-		<!-- Header -->
-			<section id="header">
-				<header>
-					<span class="image avatar">
-						<img src="images/avatar.jpg" alt="Julian Banek - Profilbild" />
-					</span>
-					<h1 id="logo"><a href="#">Julian Banek</a></h1>
-					<p>Software Engineer</p>
-				</header>
-				<nav id="nav">
-					<ul>
-						<li><a href="#one" class="active">Über mich</a></li>
-						<li><a href="#two">Fähigkeiten</a></li>
-						<li><a href="#three">Berufserfahrung</a></li>
-						<li><a href="#four">Bildung</a></li>
-						<li><a href="#five">Hobbys</a></li>
-					</ul>
-				</nav>
-				<footer>
-					<ul class="icons">
-						<li><a href="https://www.xing.com/profile/Julian_Banek/" class="icon brands fa-xing" aria-label="Xing Profil"><span class="label">Xing</span></a></li>
-						<li><a href="https://github.com/juba895/curriculum_vitae" class="icon brands fa-github" aria-label="GitHub Profil"><span class="label">GitHub</span></a></li>
-						<li><a href="mailto:julian.banek@web.de" class="icon solid fa-envelope" aria-label="E-Mail senden"><span class="label">Email</span></a></li>
-					</ul>
-				</footer>
+		<!-- Main Content -->
+		<div class="main-content">
+			<!-- About Section -->
+			<section id="about" class="section">
+				<div class="banner">
+					<div class="code-animation">
+						<div class="code-line">class SoftwareEngineer { constructor() { this.skills = ['Java', 'Python', 'CI/CD']; } }</div>
+						<div class="code-line">const pipeline = new GitHubActions({ trigger: 'push', steps: ['build', 'test', 'deploy'] });</div>
+						<div class="code-line">import { DevOps, GitHubActions, Jenkins } from '@cicd/tools';</div>
+						<div class="code-line">SELECT * FROM experience WHERE years > 10 AND domain = 'automotive';</div>
+						<div class="code-line">kubectl apply -f deployment.yaml && docker build -t app:latest .</div>
+						<div class="code-line">@RestController public class ApiController { @GetMapping("/projects") }</div>
+						<div class="code-line">git commit -m "feat: implement CI/CD optimization" && git push origin main</div>
+						<div class="code-line">def optimize_build_time(): return reduce_by_percentage(60)</div>
+					</div>
+					<div class="banner-content">
+						<h1 class="banner-title">Julian Banek</h1>
+						<p class="banner-subtitle">Software Engineer</p>
+						<div class="banner-tech">12+ Jahre • DevOps • CI/CD • Software Architecture • Agile</div>
+					</div>
+					<img src="images/banner.jpg" alt="Banner Bild - Professioneller Hintergrund" />
+				</div>
+				<div class="container">
+					<h2><span class="typewriter-text">Hallo, Ich bin Julian.</span></h2>
+					<p style="font-size: 1.1rem; line-height: 1.8; color: #666; text-align: center; margin-bottom: 2rem;">
+						Herzlich Willkommen auf meiner Website, es freut mich sehr euch hier begrüßen zu dürfen!<br>
+						Auf dieser Seite sind die wichtigsten Informationen zu meiner Person und meinem Beruf als Software Engineer zusammengefasst.
+					</p>
+					
+					<h3>Steckbrief</h3>
+					<div class="info-box">
+						<ul class="info-list">
+							<li>
+								<i class="fas fa-birthday-cake"></i>
+								<div>
+									<strong>Geboren:</strong>
+									30.05.1989<br/>
+									Neumarkt in der Oberpfalz
+								</div>
+							</li>
+							<li>
+								<i class="fas fa-users"></i>
+								<div>
+									<strong>Familie:</strong>
+									Verheiratet<br/>
+									Ein Kind
+								</div>
+							</li>
+							<li>
+								<i class="fas fa-flag"></i>
+								<div>
+									<strong>Nationalität:</strong>
+									Deutsch
+								</div>
+							</li>
+							<li>
+								<i class="fas fa-map-pin"></i>
+								<div>
+									<strong>Wohnort:</strong>
+									92339 Beilngries
+								</div>
+							</li>
+							<li>
+								<i class="fas fa-envelope"></i>
+								<div>
+									<strong>E-Mail:</strong>
+									julian.banek@web.de
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
 			</section>
 
-		<!-- Wrapper -->
-			<div id="wrapper">
-
-				<!-- Main -->
-					<div id="main">
-
-						<!-- One -->
-							<section id="one">
-								<div class="image main" data-position="center">
-									<img src="images/banner.jpg" alt="Banner Bild - Professioneller Hintergrund" />
-								</div>
-								<div class="container">
-									<header class="major">
-										<h2>Hallo, Ich bin Julian.</h2>
-									</header>
-									<p>Herzlich Willkommen auf meiner Website, es freut mich sehr euch hier begrüßen zu dürfen!<br>
-									Auf dieser Seite sind die wichtigsten Informationen zu meiner Person und meinem Beruf als Software Engineer zusammengefasst.</p>
-									<h3>Steckbrief</h3>
-								<ul class="feature-icons">
-									<li class="icon solid fa-birthday-cake">
-										<strong>Geboren:</strong> 30.05.1989<br/>
-										Neumarkt in der Oberpfalz
-									</li>
-									<li class="icon solid fa-users">
-										<strong>Familie:</strong><br/>
-										<span>&#8226;</span> Verheiratet<br/>
-										<span>&#8226;</span> Ein Kind
-									</li>
-									<li class="icon solid fa-flag"><strong>Nationalität:</strong> Deutsch</li>
-									<li class="icon solid fa-map-pin"><strong>Wohnort:</strong> 92339 Beilngries</li>
-									<li class="icon solid fa-envelope"><strong>E-Mail:</strong> julian.banek@web.de</li>
-									</ul>
-									<!--<ul class="fa-ul">
-										<li class="icon solid fa-baby-carriage">  Geboren am 30.05.1989 in Neumarkt in der Oberpfalz</li>
-										<li class="icon solid fa-flag">  Nationalität: Deutsch</li>
-										<li class="icon solid fa-map-pin">  Anschrift: 92339 Beilngries</li>
-										<li class="icon solid fa-envelope">  E-Mail: julian.banek@web.de</li>
-									</ul>-->
-								</div>
-							</section>
-
-						<!-- Two -->
-							<section id="two">
-								<div class="container">
-									<h3>Fachliche Fähigkeiten</h3>
-									<br>
-									<ul class="feature-icons">
-										<li class="icon solid fa-list-ul">
-											<b>Projektkoordination</b><br/>
-											<span>&#8226;</span>  Agile Softwareentwicklung mit SCRUM und SAFe<br/>
-											<span>&#8226;</span>  Product Ownership<br/>
-											<span>&#8226;</span>  Koordination mit internen und externen Mitarbeitern und Stakeholdern<br/>
-											<span>&#8226;</span>  Planung, Priorisierung und Durchführung<br/>
-											<span>&#8226;</span>  JIRA und Confluence<br/>
-										</li>
-										<li class="icon solid fa-ruler-combined">
-											<b>Software Design und Architektur</b><br/>
-											<span>&#8226;</span>  UML Modellierung<br/>
-											<span>&#8226;</span>  Design Patterns<br/>
-											<span>&#8226;</span>  Objektorientierte Programmierung<br/>
-											<span>&#8226;</span>  Microservices und REST-APIs<br/>
-										</li>
-										<li class="icon solid fa-industry">
-											<b>Continuous Integration and Delivery</b><br/>
-											<span>&#8226;</span>  CI/CD<br/>
-											<span>&#8226;</span>  Automatisierte Software Tests<br/>
-											<span>&#8226;</span>  Build Automatisierung mit Gradle, Maven oder Conan<br/>
-											<span>&#8226;</span>  Automatisierungstools<br/>
-											<span>&#8226;</span>  Jenkins<br/>
-											<span>&#8226;</span>  GitHub Actions<br/>
-											<span>&#8226;</span>  Docker<br/>
-											<span>&#8226;</span>  Kubernetes<br/>
-										</li>
-										<li class="icon solid fa-wrench">
-											<b>Tools</b><br/>
-											<span>&#8226;</span> Versionsverwaltung mit Git / GitHub<br/>
-											<span>&#8226;</span> Eclipse / IntelliJ IDEA / VS Code<br/>
-											<span>&#8226;</span> Enterprise Architect / PlantUML<br/>
-											<span>&#8226;</span> Spring Boot<br/>
-											<span>&#8226;</span> Windows und Linux<br/>
-											<span>&#8226;</span> MS-Office<br/>
-											<span>&#8226;</span> Atlassian<br/>
-											<span>&#8226;</span> Artifactory<br/>
-										</li>
-										<li class="icon solid fa-database">
-											<b>Datenbanksysteme</b><br/>
-											<span>&#8226;</span> SQL Datenbanken (z.B. Oracle) und SQL<br/>
-											<span>&#8226;</span> NoSQL-Datenbanken (z.B. MongoDB)<br/>
-										</li>
-										<li class="icon solid fa-keyboard">
-											<b>Webentwicklung</b><br/>
-											<span>&#8226;</span> HTML, CSS und JavaScript<br/>
-											<span>&#8226;</span> Apache Tomcat und Wildfly<br/>
-											<span>&#8226;</span> JSF und Primefaces<br/>
-										</li>
-										<li class="icon solid fa-code">
-											<b>Programmiersprachen</b><br/>
-											<span>&#8226;</span> Java / Groovy<br/>
-											<span>&#8226;</span> Python<br/>
-											<span>&#8226;</span> C / C++<br/>
-										</li>
-										<li class="icon solid fa-car">
-											<b>AUTOSAR Classic</b><br/>
-											<span>&#8226;</span> Methodologie<br/>
-											<span>&#8226;</span> Communication Stack insbesondere im Bereich Ethernet<br/>
-										</li>
-										<li class="icon solid fa-language">
-											<b>Sprachen</b><br/>
-											<span>&#8226;</span> Deutsch<br/>
-											<span>&#8226;</span> Englisch<br/>
-										</li>
-									</ul>
-								</div>
-							</section>
-
-							<!-- Three -->
-							<section id	="three">
-								<div class="container">
-									<h3>Berufserfahrung</h3>
-									<br>
-									<div class="timeline-container">
-										<div class="timeline-item" date-is='seit 01/2023'>
-											<div class="inner">
-												<h4>Software Engineer</h4>
-												<h5>CARIAD SE, PMT, Ingolstadt</h5>
-												<ul>
-													<li>Entwicklung und Wartung einer CI/CD-Umgebung für MBSD-Toolchains mittels GitHub Actions</li>
-													<li>Bereitstellung einer automatisierten Anlieferungsschnittstelle für Zulieferer</li>
-													<li>Konzeption und Implementierung einer Schnittstelle zur strukturierten Speicherung von Metadaten über Steuergeräteinformationen</li>
-												</ul>
-											</div>
-										</div>
-										<div class="timeline-item" date-is='03/2020 - 12/2022'>
-											<div class="inner">
-												<h4>Software Architekt</h4>
-												<h5>Continental Automotive GmbH, he[a]t SW Technologies, Regensburg</h5>
-												<ul>
-													<li>Entwicklung und Wartung der CI/CD Umgebung von AUTOSAR Adaptive Projekten</li>
-													<li>Konzeption, Design und Entwicklung eines Reporting Frameworks</li>
-													<li>Einsatz von Conan.io als System Integrations Werkzeug</li>
-													<li>Entwicklung von REST-APIs als Schnittstelle zu Datenbanken und weiteren Microservices</li>
-												</ul>
-											</div>
-										</div>
-										<div class="timeline-item" date-is='07/2017 - 03/2020'>
-											<div class="inner">
-												<h4>Software Engineer</h4>
-													<h5>Continental Automotive GmbH, Software Center of Competence, Regensburg</h5>
-													<ul>
-														<li>Automatisierung von Softwareentwicklungsprojekten mit Hilfe von Continuous Integration</li>
-														<li>Automatisiertes Data Reporting und deren Verarbeitung mit Hilfe einer NoSQL-Datenbank</li>
-														<li>Entwicklung einer REST-API mit Spring Boot zur einfachen und automatiserten Interaktion mit der NoSQL-Datenbank</li>
-														<li>Bereitstellung einer Single-Page-Webanwendung mittels JSF zur Visualisierung von Projektkennzahlen</li>
-													</ul>
-											</div>
-										</div>
-										<div class="timeline-item" date-is='04/2013 - 06/2017'>
-											<div class="inner">
-												<h4>Software Engineer</h4>
-												<h5>Continental Automotive GmbH, AUTOSAR Center, Regensburg</h5>
-												<ul>
-													<li>Erstellung von System-	und Akzeptanztest für Ethernet im Automotive und AUTOSAR Umfeld</li>
-													<li>Mitentwicklung eines Testtools zur Erstellung von Integrations- und Systemtests</li>
-													<li>Konfiguration eines Continuous Integration Servers und Automatisierung des CI Prozesses</li>
-													<li>Integration eines Ethernet-Stacks im AUTOSAR Umfeld</li>
-												</ul>
-											</div>
-										</div>
-										<div class="timeline-item" date-is='08/2012 - 02/2013'>
-											<div class="inner">
-												<h4>Masterand</h4>
-												<h5>Continental Engineering Services GmbH, AUTOSAR Center, Regensburg</h5>
-												<ul>
-													<li>Thema: Konzeption und Entwicklung einer Testumgebung und zugehöriger Testfälle im Bereich der Integration eines TCP/IP-Stacks in AUTOSAR</li>
-												</ul>
-											</div>
-										</div>
-										<div class="timeline-item" date-is='04/2011 - 05/2011'>
-											<div class="inner">
-												<h4>Werkstudent</h4>
-												<h5>Realtime Technology AG, München</h5>
-												<ul>
-													<li>Konzeption und Programmierung einer Oberflächenkomponente mit Hilfe der Programmiersprache C++ und Qt</li>
-												</ul>
-											</div>
-										</div>
-										<div class="timeline-item" date-is='10/2010 - 03/2011'>
-											<div class="inner">
-												<h4>Bachelorand</h4>
-												<h5>Realtime Technology AG, München</h5>
-												<ul>
-													<li>Thema: Steuerung einer immersiven VR-Szene mit Hilfe eines mobilen Endgeräts (Virtual Reality)</li>
-												</ul>
-											</div>
-										</div>
-										<div class="timeline-item" date-is='09/2009 - 02/2010'>
-											<div class="inner">
-												<h4>Praktikant</h4>
-												<h5>OptWare GmbH, Regensburg</h5>
-												<ul>
-													<li>Praxissemester im Bereich Algorithmen- und Softwareentwicklung: Implementierung einer Anwenderschnittstelle zur	Darstellung	von Produktionssequenzen</li>
-												</ul>
-											</div>
-										</div>
-									</div>
-								</div>
-							</section>
-
-							<!-- Four -->
-							<section id	="four">
-								<div class="container">
-									<h3>Bildung</h3>
-									<br>
-									<div class="timeline-container">
-										<div class="timeline-item" date-is='10/2011 - 02/2013'>
-											<div class="inner">
-												<h4>Masterstudium Informatik</h4>
-												<h5>Hochschule Regensburg</h5>
-												<ul>
-													<li>Schwerpunkt: Technical Systems</li>
-												</ul>
-											</div>
-										</div>
-										<div class="timeline-item" date-is='10/2007 - 09/2011'>
-											<div class="inner">
-												<h4>Bachelorstudium Informatik</h4>
-												<h5>Hochschule Ingolstadt</h5>
-												<ul>
-													<li>Fachrichtung: Allgemein</li>
-												</ul>
-											</div>
-										</div>
-										<div class="timeline-item" date-is='09/2005 - 07/2007'>
-											<div class="inner">
-												<h4>Fachhochschulreife</h4>
-												<h5>Maximilian-Kolbe-Schule Neumarkt (Fachoberschule)</h5>
-												<ul>
-													<li>Fachrichtung: Wirtschaft</li>
-												</ul>
-											</div>
-										</div>
-									</div>
-								</div>
-							</section>
-
-							<!-- Five -->
-							<section id="five">
-								<div class="container">
-									<h3>Hobbys & Interessen</h3>
-									<ul class="feature-icons">
-										<li class="icon solid fa-futbol">
-											<strong>Fußball</strong><br>
-										</li>
-										<li class="icon solid fa-running">
-											<strong>Laufen</strong><br>
-										</li>
-										<li class="icon solid fa-biking">
-											<strong>Radfahren</strong><br>
-										</li>
-										<li class="icon solid fa-utensils">
-											<strong>Kochen</strong><br>
-										</li>
-										<li class="icon solid fa-hammer">
-											<strong>Heimwerken</strong><br>
-										</li>
-									</ul>
-								</div>
-							</section>
-
-
-					</div>
-
-				<!-- Footer -->
-					<section id="footer">
-						<div class="container">
-							<ul class="copyright">
-								<li>&copy; All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+			<!-- Skills Section -->
+			<section id="skills" class="section" style="background: #f8f9fa;">
+				<div class="container">
+					<h3>Fachliche Fähigkeiten</h3>
+					<div class="skills-grid">
+						<div class="skill-card">
+							<i class="fas fa-list-ul icon"></i>
+							<h4>Projektkoordination</h4>
+							<ul>
+								<li>Agile Softwareentwicklung mit SCRUM und SAFe</li>
+								<li>Product Ownership</li>
+								<li>Koordination mit internen und externen Mitarbeitern und Stakeholdern</li>
+								<li>Planung, Priorisierung und Durchführung</li>
+								<li>JIRA und Confluence</li>
 							</ul>
 						</div>
-					</section>
+						<div class="skill-card">
+							<i class="fas fa-ruler-combined icon"></i>
+							<h4>Software Design und Architektur</h4>
+							<ul>
+								<li>UML Modellierung</li>
+								<li>Design Patterns</li>
+								<li>Objektorientierte Programmierung</li>
+								<li>Microservices und REST-APIs</li>
+							</ul>
+						</div>
+						<div class="skill-card">
+							<i class="fas fa-industry icon"></i>
+							<h4>Continuous Integration and Delivery</h4>
+							<ul>
+								<li>CI/CD</li>
+								<li>Automatisierte Software Tests</li>
+								<li>Build Automatisierung mit Gradle, Maven oder Conan</li>
+								<li>Automatisierungstools</li>
+								<li>Jenkins</li>
+								<li>GitHub Actions</li>
+								<li>Docker</li>
+								<li>Kubernetes</li>
+							</ul>
+						</div>
+						<div class="skill-card">
+							<i class="fas fa-wrench icon"></i>
+							<h4>Tools</h4>
+							<ul>
+								<li>Versionsverwaltung mit Git / GitHub</li>
+								<li>Eclipse / IntelliJ IDEA / VS Code</li>
+								<li>Enterprise Architect / PlantUML</li>
+								<li>Spring Boot</li>
+								<li>Windows und Linux</li>
+								<li>MS-Office</li>
+								<li>Atlassian</li>
+								<li>Artifactory</li>
+							</ul>
+						</div>
+						<div class="skill-card">
+							<i class="fas fa-database icon"></i>
+							<h4>Datenbanksysteme</h4>
+							<ul>
+								<li>SQL Datenbanken (z.B. Oracle) und SQL</li>
+								<li>NoSQL-Datenbanken (z.B. MongoDB)</li>
+							</ul>
+						</div>
+						<div class="skill-card">
+							<i class="fas fa-keyboard icon"></i>
+							<h4>Webentwicklung</h4>
+							<ul>
+								<li>HTML, CSS und JavaScript</li>
+								<li>Apache Tomcat und Wildfly</li>
+								<li>JSF und Primefaces</li>
+							</ul>
+						</div>
+						<div class="skill-card">
+							<i class="fas fa-code icon"></i>
+							<h4>Programmiersprachen</h4>
+							<ul>
+								<li>Java / Groovy</li>
+								<li>Python</li>
+								<li>C / C++</li>
+							</ul>
+						</div>
+						<div class="skill-card">
+							<i class="fas fa-car icon"></i>
+							<h4>AUTOSAR Classic</h4>
+							<ul>
+								<li>Methodologie</li>
+								<li>Communication Stack insbesondere im Bereich Ethernet</li>
+							</ul>
+						</div>
+						<div class="skill-card">
+							<i class="fas fa-language icon"></i>
+							<h4>Sprachen</h4>
+							<ul>
+								<li>Deutsch (Muttersprache)</li>
+								<li>Englisch (Fließend)</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</section>
 
-			</div>
+			<!-- Experience Section -->
+			<section id="experience" class="section">
+				<div class="container">
+					<h3>Berufserfahrung</h3>
+					<div class="timeline">
+						<div class="timeline-item right">
+							<div class="timeline-content">
+								<div class="timeline-date">01/2023 - heute</div>
+								<h4>Software Engineer</h4>
+								<h5>CARIAD SE, PMT, Ingolstadt</h5>
+								<ul>
+									<li>Entwicklung und Wartung einer CI/CD-Umgebung für MBSD-Toolchains mittels GitHub Actions</li>
+									<li>Bereitstellung einer automatisierten Anlieferungsschnittstelle für Zulieferer</li>
+									<li>Konzeption und Implementierung einer Schnittstelle zur strukturierten Speicherung von Metadaten über Steuergeräteinformationen</li>
+								</ul>
+							</div>
+						</div>
+						<div class="timeline-item left">
+							<div class="timeline-content">
+								<div class="timeline-date">03/2020 - 12/2022</div>
+								<h4>Software Architekt</h4>
+								<h5>Continental Automotive GmbH, he[a]t SW Technologies, Regensburg</h5>
+								<ul>
+									<li>Entwicklung und Wartung der CI/CD Umgebung von AUTOSAR Adaptive Projekten</li>
+									<li>Konzeption, Design und Entwicklung eines Reporting Frameworks</li>
+									<li>Einsatz von Conan.io als System Integrations Werkzeug</li>
+									<li>Entwicklung von REST-APIs als Schnittstelle zu Datenbanken und weiteren Microservices</li>
+								</ul>
+							</div>
+						</div>
+						<div class="timeline-item right">
+							<div class="timeline-content">
+								<div class="timeline-date">07/2017 - 03/2020</div>
+								<h4>Software Engineer</h4>
+								<h5>Continental Automotive GmbH, Software Center of Competence, Regensburg</h5>
+								<ul>
+									<li>Automatisierung von Softwareentwicklungsprojekten mit Hilfe von Continuous Integration</li>
+									<li>Automatisiertes Data Reporting und deren Verarbeitung mit Hilfe einer NoSQL-Datenbank</li>
+									<li>Entwicklung einer REST-API mit Spring Boot zur einfachen und automatiserten Interaktion mit der NoSQL-Datenbank</li>
+									<li>Bereitstellung einer Single-Page-Webanwendung mittels JSF zur Visualisierung von Projektkennzahlen</li>
+								</ul>
+							</div>
+						</div>
+						<div class="timeline-item left">
+							<div class="timeline-content">
+								<div class="timeline-date">04/2013 - 06/2017</div>
+								<h4>Software Engineer</h4>
+								<h5>Continental Automotive GmbH, AUTOSAR Center, Regensburg</h5>
+								<ul>
+									<li>Erstellung von System- und Akzeptanztests für Ethernet im Automotive und AUTOSAR Umfeld</li>
+									<li>Mitentwicklung eines Testtools zur Erstellung von Integrations- und Systemtests</li>
+									<li>Konfiguration eines Continuous Integration Servers und Automatisierung des CI Prozesses</li>
+									<li>Integration eines Ethernet-Stacks im AUTOSAR Umfeld</li>
+								</ul>
+							</div>
+						</div>
+						<div class="timeline-item right">
+							<div class="timeline-content">
+								<div class="timeline-date">08/2012 - 02/2013</div>
+								<h4>Masterand</h4>
+								<h5>Continental Engineering Services GmbH, AUTOSAR Center, Regensburg</h5>
+								<ul>
+									<li>Thema: Konzeption und Entwicklung einer Testumgebung und zugehöriger Testfälle im Bereich der Integration eines TCP/IP-Stacks in AUTOSAR</li>
+								</ul>
+							</div>
+						</div>
+						<div class="timeline-item left">
+							<div class="timeline-content">
+								<div class="timeline-date">04/2011 - 05/2011</div>
+								<h4>Werkstudent</h4>
+								<h5>Realtime Technology AG, München</h5>
+								<ul>
+									<li>Konzeption und Programmierung einer Oberflächenkomponente mit Hilfe der Programmiersprache C++ und Qt</li>
+								</ul>
+							</div>
+						</div>
+						<div class="timeline-item right">
+							<div class="timeline-content">
+								<div class="timeline-date">10/2010 - 03/2011</div>
+								<h4>Bachelorand</h4>
+								<h5>Realtime Technology AG, München</h5>
+								<ul>
+									<li>Thema: Steuerung einer immersiven VR-Szene mit Hilfe eines mobilen Endgeräts (Virtual Reality)</li>
+								</ul>
+							</div>
+						</div>
+						<div class="timeline-item left">
+							<div class="timeline-content">
+								<div class="timeline-date">09/2009 - 02/2010</div>
+								<h4>Praktikant</h4>
+								<h5>OptWare GmbH, Regensburg</h5>
+								<ul>
+									<li>Praxissemester im Bereich Algorithmen- und Softwareentwicklung: Implementierung einer Anwenderschnittstelle zur Darstellung von Produktionssequenzen</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+			<!-- Education Section -->
+			<section id="education" class="section" style="background: #f8f9fa;">
+				<div class="container">
+					<h3>Bildung</h3>
+					<div class="timeline">
+						<div class="timeline-item right">
+							<div class="timeline-content">
+								<div class="timeline-date">10/2011 - 02/2013</div>
+								<h4>Masterstudium Informatik</h4>
+								<h5>Hochschule Regensburg</h5>
+								<ul>
+									<li>Schwerpunkt: Technical Systems</li>
+								</ul>
+							</div>
+						</div>
+						<div class="timeline-item left">
+							<div class="timeline-content">
+								<div class="timeline-date">10/2007 - 09/2011</div>
+								<h4>Bachelorstudium Informatik</h4>
+								<h5>Hochschule Ingolstadt</h5>
+								<ul>
+									<li>Fachrichtung: Allgemein</li>
+								</ul>
+							</div>
+						</div>
+						<div class="timeline-item right">
+							<div class="timeline-content">
+								<div class="timeline-date">09/2005 - 07/2007</div>
+								<h4>Fachhochschulreife</h4>
+								<h5>Maximilian-Kolbe-Schule Neumarkt (Fachoberschule)</h5>
+								<ul>
+									<li>Fachrichtung: Wirtschaft</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
 
+			<!-- Hobbies Section -->
+			<section id="hobbies" class="section">
+				<div class="container">
+					<h3>Hobbys & Interessen</h3>
+					<div class="skills-grid">
+						<div class="skill-card">
+							<i class="fas fa-futbol icon"></i>
+							<h4>Fußball</h4>
+						</div>
+						<div class="skill-card">
+							<i class="fas fa-running icon"></i>
+							<h4>Laufen</h4>
+						</div>
+						<div class="skill-card">
+							<i class="fas fa-biking icon"></i>
+							<h4>Radfahren</h4>
+						</div>
+						<div class="skill-card">
+							<i class="fas fa-utensils icon"></i>
+							<h4>Kochen</h4>
+						</div>
+						<div class="skill-card">
+							<i class="fas fa-hammer icon"></i>
+							<h4>Heimwerken</h4>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Footer -->
+			<footer style="background: #2c3e50; color: white; text-align: center; padding: 2rem 0;">
+				<div class="container">
+					<p>&copy; 2026 Julian Banek. Alle Rechte vorbehalten. | Design inspiriert von <a href="https://html5up.net" target="_blank" style="color: #4facfe; text-decoration: none;">HTML5 UP</a></p>
+				</div>
+			</footer>
+		</div>
+
+		<!-- Minimal JavaScript for smooth scrolling -->
+		<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			// Smooth scrolling for navigation links
+			const navLinks = document.querySelectorAll('nav a[href^="#"]');
+			navLinks.forEach(link => {
+				link.addEventListener('click', function(e) {
+					e.preventDefault();
+					const targetId = this.getAttribute('href');
+					const targetSection = document.querySelector(targetId);
+					if (targetSection) {
+						targetSection.scrollIntoView({
+							behavior: 'smooth',
+							block: 'start'
+						});
+						
+						// Update active nav item
+						navLinks.forEach(navLink => navLink.classList.remove('active'));
+						this.classList.add('active');
+					}
+				});
+			});
+			
+			// Add fade-in animation to sections
+			const sections = document.querySelectorAll('.section');
+			const observerOptions = {
+				threshold: 0.1,
+				rootMargin: '0px 0px -50px 0px'
+			};
+			
+			const observer = new IntersectionObserver(function(entries) {
+				entries.forEach(entry => {
+					if (entry.isIntersecting) {
+						entry.target.style.opacity = '1';
+						entry.target.style.transform = 'translateY(0)';
+					}
+				});
+			}, observerOptions);
+			
+			sections.forEach(section => {
+				section.style.opacity = '0';
+				section.style.transform = 'translateY(30px)';
+				section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+				observer.observe(section);
+			});
+			
+			// Navigation highlighting on scroll
+			function updateActiveNavigation() {
+				const scrollPos = window.scrollY + 200; // Offset for better detection
+				
+				sections.forEach(section => {
+					const sectionTop = section.offsetTop;
+					const sectionHeight = section.offsetHeight;
+					const sectionId = section.getAttribute('id');
+					
+					if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+						// Remove active class from all nav links
+						navLinks.forEach(link => link.classList.remove('active'));
+						
+						// Add active class to current section's nav link
+						const activeLink = document.querySelector(`nav a[href="#${sectionId}"]`);
+						if (activeLink) {
+							activeLink.classList.add('active');
+						}
+					}
+				});
+			}
+			
+			// Listen for scroll events
+			window.addEventListener('scroll', updateActiveNavigation);
+			
+			// Initial call to set correct active state
+			updateActiveNavigation();
+		});
+		</script>
 	</body>
 </html>
