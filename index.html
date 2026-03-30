@@ -568,91 +568,249 @@
 		
 		/* Print Styles */
 		@media print {
-			body {
-				font-size: 12px;
-				line-height: 1.4;
+			@page {
+				size: A4;
+				margin: 1.2cm;
 			}
-			
-			.sidebar {
-				position: relative;
-				width: 100%;
-				height: auto;
-				padding: 1rem;
-				margin-bottom: 1rem;
-				page-break-inside: avoid;
+
+			/* Farben und Animationen */
+			*, *::before, *::after {
+				animation: none !important;
+				transition: none !important;
+				print-color-adjust: exact !important;
+				-webkit-print-color-adjust: exact !important;
 			}
-			
-			.main-content {
-				margin-left: 0;
-			}
-			
+
+			/* JS-initiierte Fade-in-Styles zurücksetzen */
 			.section {
-				padding: 1.5rem 0;
+				opacity: 1 !important;
+				transform: none !important;
+			}
+
+			body {
+				font-size: 9px;
+				line-height: 1.4;
+				background: white !important;
+			}
+
+			p, li, span, div {
+				font-size: 9px !important;
+			}
+
+			/* ── Sidebar: kompakter horizontaler Header ── */
+			.sidebar {
+				position: relative !important;
+				width: 100% !important;
+				height: auto !important;
+				display: flex !important;
+				flex-direction: row !important;
+				align-items: center !important;
+				gap: 1rem !important;
+				padding: 0.6rem 1rem !important;
+				margin-bottom: 0.4rem;
 				page-break-inside: avoid;
 			}
-			
+
+			.sidebar .avatar {
+				width: 55px !important;
+				height: 55px !important;
+				flex-shrink: 0;
+				margin: 0 !important;
+			}
+
+			.sidebar h1 {
+				font-size: 1.1rem !important;
+				margin-bottom: 0.1rem !important;
+			}
+
+			.sidebar .subtitle {
+				font-size: 0.8rem !important;
+				margin-bottom: 0 !important;
+			}
+
+			/* Navigation und Social-Icons ausblenden */
+			.sidebar nav,
+			.sidebar .social-icons {
+				display: none !important;
+			}
+
+			/* ── Main Content ── */
+			.main-content {
+				margin-left: 0 !important;
+			}
+
+			/* ── Banner ── */
 			.banner {
-				height: 200px;
+				height: 100px !important;
+				margin-bottom: 0.6rem !important;
+				border-radius: 6px !important;
 				page-break-inside: avoid;
 			}
-			
+
 			.banner-title {
-				font-size: 2rem;
+				font-size: 1.3rem !important;
+				margin-bottom: 0.3rem !important;
 			}
-			
+
 			.banner-subtitle {
-				font-size: 1rem;
+				font-size: 0.85rem !important;
+				margin-bottom: 0.4rem !important;
 			}
-			
-			.timeline::before {
-				left: 20px;
+
+			.banner-tech {
+				font-size: 0.75rem !important;
+				padding: 0.25rem 0.75rem !important;
 			}
-			
-			.timeline-item {
-				width: 100%;
-				padding-left: 2rem;
-				padding-right: 1rem;
+
+			/* Code-Animation ausblenden */
+			.code-animation {
+				display: none !important;
+			}
+
+			/* Typewriter-Effekt deaktivieren */
+			.typewriter-text {
+				border-right: none !important;
+				white-space: normal !important;
+				overflow: visible !important;
+				animation: none !important;
+			}
+
+			/* ── Sektionen ── */
+			.section {
+				padding: 0.5rem 0 !important;
+			}
+
+			.container {
+				padding: 0 0.5rem !important;
+			}
+
+			/* Seitenumbrüche */
+			#skills        { page-break-before: always; }
+			#experience    { page-break-before: always; }
+			#education     { page-break-before: auto;   }
+			#hobbies       { page-break-before: auto;   }
+
+			.timeline-content,
+			.skill-card,
+			.info-box {
 				page-break-inside: avoid;
-				margin-bottom: 1rem;
-				margin-right: 0;
 			}
-			
+
+			/* ── Timeline: einspaltiges Layout ── */
+			.timeline {
+				margin: 1rem auto !important;
+			}
+
+			.timeline::before {
+				left: 14px !important;
+			}
+
+			.timeline-item,
 			.timeline-item.left,
 			.timeline-item.right {
-				left: 0%;
-				padding-left: 2rem;
-				padding-right: 1rem;
+				width: 100% !important;
+				left: 0 !important;
+				padding-left: 2rem !important;
+				padding-right: 0 !important;
+				margin-bottom: 0.5rem !important;
+				page-break-inside: avoid;
 			}
-			
+
 			.timeline-item::after,
 			.timeline-item.left::after,
 			.timeline-item.right::after {
-				left: 8px;
-				right: auto;
+				left: 5px !important;
+				right: auto !important;
+				width: 14px !important;
+				height: 14px !important;
 			}
-			
+
+			.timeline-content {
+				padding: 0.6rem 0.8rem !important;
+			}
+
+			.timeline-date {
+				font-size: 0.75rem !important;
+				margin-bottom: 0.2rem !important;
+			}
+
+			.timeline-content h4 {
+				font-size: 0.9rem !important;
+				margin-bottom: 0.15rem !important;
+			}
+
+			.timeline-content h5 {
+				font-size: 0.8rem !important;
+				margin-bottom: 0.4rem !important;
+			}
+
+			/* ── Skills Grid: 4 Spalten ── */
 			.skills-grid {
-				grid-template-columns: repeat(2, 1fr);
-				gap: 1rem;
+				grid-template-columns: repeat(4, 1fr) !important;
+				gap: 0.4rem !important;
+				margin: 0.5rem 0 !important;
 			}
-			
+
 			.skill-card {
-				padding: 1rem;
-				page-break-inside: avoid;
+				padding: 0.5rem !important;
+				box-shadow: none !important;
+				border: 1px solid #ddd !important;
 			}
-			
-			.typewriter-text {
-				border-right: none;
-				animation: none;
+
+			.skill-card .icon {
+				font-size: 1.4rem !important;
+				margin-bottom: 0.3rem !important;
 			}
-			
+
+			.skill-card h4 {
+				font-size: 0.8rem !important;
+				margin-bottom: 0.3rem !important;
+			}
+
+			/* ── Info-Liste ── */
+			.info-box {
+				padding: 0.75rem !important;
+				margin: 0.5rem 0 !important;
+			}
+
+			.info-list {
+				grid-template-columns: repeat(3, 1fr) !important;
+				gap: 0.5rem !important;
+			}
+
+			.info-list li {
+				padding: 0.4rem !important;
+				gap: 0.5rem !important;
+			}
+
+			.info-list i {
+				font-size: 1rem !important;
+			}
+
+			/* ── Typografie ── */
+			h2, h3, h4, h5 {
+				break-after: avoid !important;
+				page-break-after: avoid !important;
+			}
+
 			h2 {
-				font-size: 1.8rem;
+				font-size: 1.1rem !important;
+				margin-bottom: 0.4rem !important;
 			}
-			
+
+			h2::after {
+				margin: 0.3rem auto !important;
+			}
+
 			h3 {
-				font-size: 1.4rem;
-				padding-left: 1rem;
+				font-size: 0.95rem !important;
+				padding-left: 0.75rem !important;
+				margin-bottom: 0.5rem !important;
+			}
+
+			/* ── Footer ausblenden ── */
+			footer {
+				display: none !important;
 			}
 		}
 		</style>
