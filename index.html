@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
 <html lang="de">
 	<head>
-		<title>Julian Banek - Software Engineer | CV</title>
+		<title>Julian Banek – Software Engineer | CV</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<meta name="description" content="Julian Banek - Software Engineer mit 12+ Jahren Erfahrung in DevOps, CI/CD und Software Architecture. Experte für agile Softwareentwicklung und moderne Build-Pipelines." />
-		<meta name="keywords" content="DevOps, CI/CD, Software Development, Software Architecture, Agile Project Management" />
+		<meta name="description" content="Julian Banek – Software Engineer mit 13+ Jahren Erfahrung im Automotive-Umfeld. Schwerpunkte: CI/CD-Pipelines, Software-Architektur und Build- &amp; Release-Automatisierung." />
+		<meta name="keywords" content="CI/CD, Software Architecture, DevOps, Automotive, KI-gestützte Entwicklung, Jenkins, GitHub Actions, Java, Python" />
 		
 		<!-- FontAwesome Icons -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
@@ -31,7 +31,7 @@
 			left: 0;
 			width: 320px;
 			height: 100vh;
-			background: linear-gradient(135deg, #2c3e50 0%, #3a4d63 100%);
+			background: linear-gradient(135deg, #1e2530 0%, #2d3547 100%);
 			color: white;
 			padding: 2rem;
 			overflow-y: auto;
@@ -52,6 +52,49 @@
 			width: 100%;
 			height: 100%;
 			object-fit: cover;
+			transition: transform 0.3s ease;
+		}
+
+		.sidebar .avatar:hover img {
+			transform: scale(1.08);
+		}
+
+		.sidebar .avatar {
+			cursor: pointer;
+		}
+
+		/* Lightbox */
+		.lightbox-overlay {
+			display: none;
+			position: fixed;
+			top: 0; left: 0;
+			width: 100%; height: 100%;
+			background: rgba(0,0,0,0.85);
+			z-index: 9999;
+			align-items: center;
+			justify-content: center;
+			cursor: zoom-out;
+		}
+
+		.lightbox-overlay.active {
+			display: flex;
+		}
+
+		.lightbox-overlay img {
+			max-width: 80vw;
+			max-height: 80vh;
+			border-radius: 50%;
+			border: 5px solid rgba(255,255,255,0.3);
+			box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+			animation: lightboxIn 0.25s ease-out;
+			width: 480px;
+			height: 480px;
+			object-fit: cover;
+		}
+
+		@keyframes lightboxIn {
+			from { opacity: 0; transform: scale(0.8); }
+			to   { opacity: 1; transform: scale(1); }
 		}
 		
 		.sidebar h1 {
@@ -383,8 +426,14 @@
 		}
 		
 		.skill-card li {
-			margin-bottom: 0.5rem;
+			margin-bottom: 0.85rem;
 			color: #666;
+		}
+
+		.skill-card li b {
+			display: block;
+			font-weight: normal;
+			margin-bottom: 0.1rem;
 		}
 		
 		/* Info Box */
@@ -612,8 +661,8 @@
 			}
 
 			.sidebar .avatar {
-				width: 55px !important;
-				height: 55px !important;
+				width: 80px !important;
+				height: 80px !important;
 				flex-shrink: 0;
 				margin: 0 !important;
 			}
@@ -641,9 +690,13 @@
 
 			/* ── Banner ── */
 			.banner {
-				height: 100px !important;
-				margin-bottom: 0.6rem !important;
-				border-radius: 6px !important;
+				height: auto !important;
+				min-height: 0 !important;
+				background: none !important;
+				box-shadow: none !important;
+				margin-bottom: 0.4rem !important;
+				border-radius: 0 !important;
+				padding: 0.3rem 0 !important;
 				page-break-inside: avoid;
 			}
 
@@ -664,6 +717,13 @@
 
 			/* Code-Animation ausblenden */
 			.code-animation {
+				display: none !important;
+			}
+
+			/* Banner-Titel und Untertitel ausblenden (Sidebar zeigt beides bereits) */
+			.banner-title,
+			.banner-subtitle,
+			.banner-content {
 				display: none !important;
 			}
 
@@ -827,7 +887,7 @@
 			<nav>
 				<ul>
 					<li><a href="#about" class="active">Über mich</a></li>
-					<li><a href="#skills">Fähigkeiten</a></li>
+					<li><a href="#skills">Fachliche Fähigkeiten</a></li>
 					<li><a href="#experience">Berufserfahrung</a></li>
 					<li><a href="#education">Bildung</a></li>
 					<li><a href="#hobbies">Hobbys</a></li>
@@ -865,16 +925,12 @@
 					<div class="banner-content">
 						<h1 class="banner-title">Julian Banek</h1>
 						<p class="banner-subtitle">Software Engineer</p>
-						<div class="banner-tech">12+ Jahre • DevOps • CI/CD • Software Architecture • Agile</div>
+						<div class="banner-tech">13+ Jahre Automotive • CI/CD-Pipelines • Software Architecture</div>
 					</div>
 					<img src="images/banner.jpg" alt="Banner Bild - Professioneller Hintergrund" />
 				</div>
 				<div class="container">
-					<h2><span class="typewriter-text">Hallo, Ich bin Julian.</span></h2>
-					<p style="font-size: 1.1rem; line-height: 1.8; color: #666; text-align: center; margin-bottom: 2rem;">
-						Herzlich willkommen auf meiner Website! Schön, dass Sie hier sind.<br>
-						Hier finden Sie die wichtigsten Informationen zu meiner Person und meinem Werdegang als Software Engineer.
-					</p>
+					<h2><span class="typewriter-text">Hallo, ich bin Julian.</span></h2>
 					
 					<h3>Steckbrief</h3>
 					<div class="info-box">
@@ -918,13 +974,37 @@
 							</li>
 						</ul>
 					</div>
+				
+				<h3 style="margin-top: 3rem;">Profil</h3>
+				<div class="info-box">
+					<p style="color: #666; line-height: 1.8; margin: 0 0 1.25rem 0;">
+						Software Engineer mit 13+ Jahren Erfahrung im Automotive-Umfeld.
+					</p>
+					<ul style="list-style: none; padding: 0; margin: 0;">
+						<li style="padding: 0.75rem 0; display: flex; align-items: flex-start; gap: 1rem;">
+							<i class="fas fa-check-circle" style="color: #2c3e50; margin-top: 0.3rem; font-size: 1.2rem;"></i>
+							<span>CI/CD-Pipelines: Konzeption, Umsetzung und Automatisierung von Build-, Test- und Deployment-Prozessen</span>
+						</li>
+						<li style="padding: 0.75rem 0; display: flex; align-items: flex-start; gap: 1rem;">
+							<i class="fas fa-check-circle" style="color: #2c3e50; margin-top: 0.3rem; font-size: 1.2rem;"></i>
+							<span>Softwarearchitektur: Entwurf skalierbarer, wartbarer Systeme nach etablierten Best Practices, Design Patterns und Architekturprinzipien</span>
+						</li>
+						<li style="padding: 0.75rem 0; display: flex; align-items: flex-start; gap: 1rem;">
+							<i class="fas fa-check-circle" style="color: #2c3e50; margin-top: 0.3rem; font-size: 1.2rem;"></i>
+							<span>Product Ownership &amp; Koordination: Agile Planung, Backlog-Management und Zusammenarbeit mit internen Teams und externen Stakeholdern / Dienstleistern</span>
+						</li>
+						<li style="padding: 0.75rem 0; display: flex; align-items: flex-start; gap: 1rem;">
+							<i class="fas fa-check-circle" style="color: #2c3e50; margin-top: 0.3rem; font-size: 1.2rem;"></i>
+							<span>Lernbereitschaft &amp; Technologieaffinität: Freude am Einarbeiten in neue Technologien und Methoden – von KI-gestützten Werkzeugen bis hin zu modernen Plattform- und Infrastrukturtechnologien</span>
+						</li>
+					</ul>
 				</div>
-			</section>
+			</div>
+		</section>
 
-			<!-- Skills Section -->
-			<section id="skills" class="section" style="background: #f8f9fa;">
-				<div class="container">
-					<h3>Fachliche Fähigkeiten</h3>
+		<section id="skills" class="section">
+			<div class="container">
+				<h3>Fachliche Fähigkeiten</h3>
 					<div class="skills-grid">
 						<div class="skill-card">
 							<i class="fas fa-list-ul icon"></i>
@@ -932,8 +1012,8 @@
 							<ul>
 								<li>Agile Softwareentwicklung mit SCRUM und SAFe</li>
 								<li>Product Ownership</li>
-								<li>Koordination mit internen und externen Mitarbeitern und Stakeholdern</li>
-								<li>Planung, Priorisierung und Durchführung</li>
+								<li>Koordination mit internen Mitarbeitern und externen Stakeholdern / Dienstleistern</li>
+								<li>Sprint-Planung, Backlog-Management, Release-Koordination</li>
 								<li>JIRA und Confluence</li>
 							</ul>
 						</div>
@@ -941,49 +1021,54 @@
 							<i class="fas fa-ruler-combined icon"></i>
 							<h4>Software Design und Architektur</h4>
 							<ul>
-								<li>UML Modellierung</li>
-								<li>Design Patterns</li>
-								<li>Objektorientierte Programmierung</li>
-								<li>Microservices und REST-APIs</li>
+								<li><b>Prinzipien:</b> SOLID, KISS, SoC, Clean Code &amp; Code Reviews</li>
+								<li><b>Paradigmen:</b> Objektorientierte Programmierung, Design Patterns</li>
+								<li><b>Modellierung:</b> UML</li>
+								<li><b>Architekturstile:</b> Microservices &amp; REST-APIs, Event-Driven Architecture, API-First (OpenAPI / Swagger)</li>
 							</ul>
 						</div>
 						<div class="skill-card">
 							<i class="fas fa-industry icon"></i>
 							<h4>Continuous Integration and Delivery</h4>
 							<ul>
-								<li>CI/CD</li>
-								<li>Automatisierte Software Tests</li>
-								<li>Build Automatisierung mit Gradle, Maven oder Conan</li>
-								<li>Automatisierungstools</li>
-								<li>Jenkins</li>
-								<li>GitHub Actions</li>
-								<li>Docker</li>
-								<li>Kubernetes</li>
+								<li><b>Prinzipien:</b> Pipeline as Code, Commit-getriggerte Pipelines, ganzheitliche Modultests</li>
+								<li><b>Tests:</b> Automatisierte Tests (pytest, JUnit)</li>
+								<li><b>Build:</b> Gradle / Maven (Java), Conan (C++), pip / uv (Python)</li>
+								<li><b>Plattformen:</b> Jenkins, GitHub Actions</li>
+								<li><b>Laufzeitumgebungen:</b> Docker, Kubernetes, Microsoft Azure</li>
 							</ul>
 						</div>
 						<div class="skill-card">
 							<i class="fas fa-wrench icon"></i>
 							<h4>Tools</h4>
 							<ul>
-								<li>Versionsverwaltung mit Git / GitHub</li>
-								<li>Eclipse / IntelliJ IDEA / VS Code</li>
-								<li>Enterprise Architect / PlantUML / Mermaid</li>
-								<li>Spring Boot</li>
-								<li>Windows und Linux</li>
-								<li>MS-Office</li>
-								<li>Atlassian</li>
-								<li>Artifactory</li>
+								<li><b>IDEs:</b> Eclipse / IntelliJ IDEA / VS Code</li>
+								<li><b>Versionsverwaltung:</b> Git / GitHub</li>
+								<li><b>Modellierung:</b> Enterprise Architect / PlantUML / Mermaid</li>
+								<li><b>Frameworks:</b> Spring Boot, Hibernate / JPA, FastAPI</li>
+								<li><b>Artefakt-Management:</b> Artifactory</li>
+								<li><b>Betriebssysteme:</b> Windows / Linux</li>
+							</ul>
+						</div>
+						<div class="skill-card">
+							<i class="fas fa-robot icon"></i>
+							<h4>AI-Tools</h4>
+							<ul>
+								<li>Spezifikationsgetriebene KI-Entwicklung (Custom Instructions)</li>
+								<li>KI-gestützte Code-, Test- und Dokumentationserstellung</li>
+								<li>KI-gestützte Konzept- und Spezifikationserstellung</li>
+								<li>Prompt Engineering</li>
+								<li>Tool: GitHub Copilot</li>
 							</ul>
 						</div>
 						<div class="skill-card">
 							<i class="fas fa-database icon"></i>
 							<h4>Datenbanksysteme</h4>
 							<ul>
-								<li>SQL Datenbanken (z.B. Oracle) und SQL</li>
-								<li>NoSQL-Datenbanken (z.B. MongoDB)</li>
+								<li><b>Relational:</b> Oracle inkl. SQL</li>
+								<li><b>NoSQL:</b> MongoDB</li>
 							</ul>
 						</div>
-
 						<div class="skill-card">
 							<i class="fas fa-code icon"></i>
 							<h4>Programmiersprachen</h4>
@@ -1036,6 +1121,7 @@
 									<li>Entwicklung und Wartung einer CI/CD-Umgebung für MBSD-Toolchains mittels GitHub Actions</li>
 									<li>Bereitstellung einer automatisierten Anlieferungsschnittstelle für Zulieferer</li>
 									<li>Konzeption und Implementierung einer Schnittstelle zur strukturierten Speicherung von Steuergeräte-Metadaten</li>
+									<li>Migration von statischen Jenkins-Nodes zu dynamischen Jenkins-Nodes mit Microsoft Azure</li>
 								</ul>
 							</div>
 						</div>
@@ -1059,8 +1145,8 @@
 								<h5>Continental Automotive GmbH, Software Center of Competence, Regensburg</h5>
 								<ul>
 									<li>Automatisierung von Softwareentwicklungsprojekten mit Hilfe von Continuous Integration</li>
-									<li>Automatisiertes Data Reporting und deren Verarbeitung mit Hilfe einer NoSQL-Datenbank</li>
-									<li>Entwicklung einer REST-API mit Spring Boot zur einfachen und automatiserten Interaktion mit der NoSQL-Datenbank</li>
+									<li>Automatisiertes Data Reporting und dessen Verarbeitung mit Hilfe einer NoSQL-Datenbank</li>
+									<li>Entwicklung einer REST-API mit Spring Boot zur einfachen und automatisierten Interaktion mit der NoSQL-Datenbank</li>
 									<li>Bereitstellung einer Single-Page-Webanwendung mittels JSF zur Visualisierung von Projektkennzahlen</li>
 								</ul>
 							</div>
@@ -1191,11 +1277,16 @@
 			</section>
 
 			<!-- Footer -->
-			<footer style="background: #2c3e50; color: white; text-align: center; padding: 2rem 0;">
+			<footer style="background: #2d3547; color: white; text-align: center; padding: 2rem 0;">
 				<div class="container">
 					<p>&copy; 2026 Julian Banek. Alle Rechte vorbehalten. | Design inspiriert von <a href="https://html5up.net" target="_blank" style="color: #4facfe; text-decoration: none;">HTML5 UP</a></p>
 				</div>
 			</footer>
+		</div>
+
+		<!-- Lightbox Overlay -->
+		<div class="lightbox-overlay" id="avatarLightbox">
+			<img src="images/avatar.jpg" alt="Julian Banek" />
 		</div>
 
 		<!-- Minimal JavaScript for smooth scrolling -->
@@ -1271,6 +1362,16 @@
 			
 			// Initial call to set correct active state
 			updateActiveNavigation();
+			// Lightbox for avatar
+			const avatar = document.querySelector('.sidebar .avatar');
+			const lightbox = document.getElementById('avatarLightbox');
+			if (avatar && lightbox) {
+				avatar.addEventListener('click', () => lightbox.classList.add('active'));
+				lightbox.addEventListener('click', () => lightbox.classList.remove('active'));
+				document.addEventListener('keydown', e => {
+					if (e.key === 'Escape') lightbox.classList.remove('active');
+				});
+			}
 		});
 		</script>
 	</body>
