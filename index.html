@@ -481,95 +481,186 @@
 		}
 		
 		/* Timeline */
-		.timeline {
-			position: relative;
-			max-width: 800px;
-			margin: 3rem auto;
+		.resume-section-heading {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+			margin-bottom: 1.5rem;
 		}
 		
-		.timeline::before {
-			content: '';
-			position: absolute;
-			width: 4px;
-			background: linear-gradient(135deg, #2c3e50 0%, #4a5568 100%);
-			top: 0;
-			bottom: 0;
-			left: 50%;
-			margin-left: -2px;
+		.resume-section-heading h3 {
+			margin-bottom: 0;
 		}
 		
-		.timeline-item {
+		.resume-view-toggle {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 30px;
+			height: 30px;
 			padding: 0;
-			position: relative;
-			background: inherit;
-			width: calc(50% - 15px);
-			margin-bottom: 2rem;
+			border: 0;
+			border-radius: 50%;
+			background: transparent;
+			color: #718096;
+			font-size: 0.9rem;
+			cursor: pointer;
+			transition: background 0.2s ease, color 0.2s ease;
+		}
+		
+		.resume-view-toggle:hover {
+			background: #edf2f6;
+			color: #2c3e50;
+		}
+		
+		.resume-view-toggle:focus-visible {
+			outline: 2px solid #8fb5d5;
+			outline-offset: 2px;
+		}
+		
+		.timeline {
+			max-width: 1000px;
+			margin: 1.25rem auto 0;
+			border-top: 1px solid #dbe2e8;
+		}
+		
+		.timeline-item,
+		.timeline-item.left,
+		.timeline-item.right {
+			display: grid;
+			grid-template-columns: 150px minmax(0, 1fr);
+			gap: 1.25rem;
+			width: 100%;
+			left: auto;
+			margin: 0;
+			padding: 1.25rem 0;
+			border-bottom: 1px solid #dbe2e8;
+			break-inside: avoid;
+			page-break-inside: avoid;
 		}
 		
 		.timeline-item::after {
-			content: '';
-			position: absolute;
-			width: 20px;
-			height: 20px;
-			background: #2c3e50;
-			border: 4px solid white;
-			top: 15px;
-			border-radius: 50%;
-			z-index: 1;
-			box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-		}
-		
-		.timeline-item.left {
-			left: 0;
-		}
-		
-		.timeline-item.left::after {
-			right: -25px;
-		}
-		
-		.timeline-item.right {
-			left: calc(50% + 15px);
-		}
-		
-		.timeline-item.right::after {
-			left: -25px;
+			display: none;
 		}
 		
 		.timeline-content {
-			padding: 1.5rem;
-			background: white;
-			border-radius: 10px;
-			box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-			border: 1px solid #e9ecef;
+			min-width: 0;
+			padding: 0.1rem 0 0.1rem 1rem;
+			background: transparent;
+			border: 0;
+			border-left: 3px solid #dbe2e8;
+			border-radius: 0;
+			box-shadow: none;
 		}
 		
 		.timeline-date {
 			color: #2c3e50;
-			font-weight: bold;
-			font-size: 0.9rem;
-			margin-bottom: 0.5rem;
+			font-weight: 700;
+			font-size: 0.95rem;
+			line-height: 1.5;
+			padding-top: 0.15rem;
 		}
 		
 		.timeline-content h4 {
-			color: #2c3e50;
-			margin-bottom: 0.5rem;
-			font-size: 1.3rem;
+			color: #23384d;
+			margin-bottom: 0.15rem;
+			font-size: 1.15rem;
+			line-height: 1.35;
 		}
 		
 		.timeline-content h5 {
-			color: #2c3e50;
-			margin-bottom: 1rem;
-			font-weight: 500;
+			color: #536579;
+			margin-bottom: 0.65rem;
+			font-weight: 600;
+			font-size: 0.95rem;
+			line-height: 1.45;
 		}
 		
 		.timeline-content ul {
+			list-style: disc;
 			margin: 0;
-			padding-left: 1.5rem;
+			padding-left: 1.2rem;
 		}
 		
 		.timeline-content li {
-			margin-bottom: 0.5rem;
-			color: #666;
+			margin-bottom: 0.35rem;
+			color: #5f6872;
+			line-height: 1.55;
+		}
+		
+		.timeline.is-timeline {
+			position: relative;
+			border-top: 0;
+			padding-top: 0.25rem;
+		}
+		
+		.timeline.is-timeline::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 50%;
+			width: 2px;
+			background: #dbe2e8;
+			transform: translateX(-50%);
+		}
+		
+		.timeline.is-timeline .timeline-item,
+		.timeline.is-timeline .timeline-item.left,
+		.timeline.is-timeline .timeline-item.right {
+			position: relative;
+			grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1fr);
+			gap: 0.75rem;
+			padding: 0.5rem 0 1rem;
+			border: 0;
+		}
+		
+		.timeline.is-timeline .timeline-item::after {
+			display: block;
+			position: absolute;
+			z-index: 1;
+			top: 1rem;
+			left: 50%;
+			width: 0.8rem;
+			height: 0.8rem;
+			border: 3px solid #fff;
+			border-radius: 50%;
+			background: #385a78;
+			box-shadow: 0 0 0 1px #cbd5df;
+			transform: translateX(-50%);
+			content: '';
+		}
+		
+		.timeline.is-timeline .timeline-item.right .timeline-date {
+			grid-column: 1;
+			text-align: right;
+		}
+		
+		.timeline.is-timeline .timeline-item.right .timeline-content {
+			grid-column: 3;
+		}
+		
+		.timeline.is-timeline .timeline-item.left .timeline-date {
+			grid-column: 3;
+			text-align: left;
+		}
+		
+		.timeline.is-timeline .timeline-item.left .timeline-content {
+			grid-column: 1;
+			grid-row: 1;
+		}
+		
+		.timeline.is-timeline .timeline-date {
+			align-self: start;
+			padding: 0.8rem 0.25rem 0;
+		}
+		
+		.timeline.is-timeline .timeline-content {
+			padding: 0.85rem;
+			border: 1px solid #e1e7ed;
+			border-radius: 8px;
+			background: #fff;
+			box-shadow: 0 3px 12px rgba(31, 48, 64, 0.08);
 		}
 		
 		/* Responsive */
@@ -585,29 +676,45 @@
 				margin-left: 0;
 			}
 			
-			.timeline::before {
-				left: 20px;
-			}
-			
-			.timeline-item {
-				width: 100%;
-				padding-left: 3rem;
-				padding-right: 1rem;
-				margin-right: 0;
-			}
-			
+			.timeline-item,
 			.timeline-item.left,
 			.timeline-item.right {
-				left: 0%;
-				padding-left: 3rem;
-				padding-right: 1rem;
+				grid-template-columns: 1fr;
+				gap: 0.35rem;
+				padding: 0.9rem 0;
 			}
 			
-			.timeline-item::after,
-			.timeline-item.left::after,
-			.timeline-item.right::after {
-				left: 8px;
-				right: auto;
+			.timeline-content {
+				padding-left: 0.75rem;
+			}
+			
+			.timeline.is-timeline {
+				padding-left: 1.5rem;
+			}
+			
+			.timeline.is-timeline::before {
+				left: 0.45rem;
+				transform: none;
+			}
+			
+			.timeline.is-timeline .timeline-item,
+			.timeline.is-timeline .timeline-item.left,
+			.timeline.is-timeline .timeline-item.right {
+				display: block;
+				padding: 0 0 1rem;
+			}
+			
+			.timeline.is-timeline .timeline-item::after {
+				top: 0.2rem;
+				left: -1.45rem;
+				transform: none;
+			}
+			
+			.timeline.is-timeline .timeline-date,
+			.timeline.is-timeline .timeline-item.left .timeline-date,
+			.timeline.is-timeline .timeline-item.right .timeline-date {
+				padding: 0 0 0.35rem;
+				text-align: left;
 			}
 			
 			.skills-grid {
@@ -634,12 +741,24 @@
 			.section {
 				opacity: 1 !important;
 				transform: none !important;
+				background: #fff !important;
 			}
 
 			body {
 				font-size: 9px;
 				line-height: 1.4;
 				background: white !important;
+			}
+
+			.info-box {
+				background: #fff !important;
+				box-shadow: none !important;
+				border: 1px solid #e3e7eb !important;
+			}
+
+			.info-list li,
+			.info-list li:hover {
+				background: transparent !important;
 			}
 
 			p, li, span, div {
@@ -740,6 +859,10 @@
 				padding: 0.5rem 0 !important;
 			}
 
+			.resume-view-toggle {
+				display: none !important;
+			}
+
 			.container {
 				padding: 0 0.5rem !important;
 			}
@@ -750,58 +873,99 @@
 			#education     { page-break-before: auto;   }
 			#hobbies       { page-break-before: auto;   }
 
+			.timeline-item,
 			.timeline-content,
 			.skill-card,
 			.info-box {
 				page-break-inside: avoid;
 			}
 
-			/* ── Timeline: einspaltiges Layout ── */
+			/* ── Erfahrung und Bildung: kompakte Datums-Liste ── */
 			.timeline {
-				margin: 1rem auto !important;
-			}
-
-			.timeline::before {
-				left: 14px !important;
+				margin: 0.35rem auto 0 !important;
 			}
 
 			.timeline-item,
 			.timeline-item.left,
 			.timeline-item.right {
+				grid-template-columns: 95px minmax(0, 1fr) !important;
+				gap: 0.5rem !important;
 				width: 100% !important;
-				left: 0 !important;
-				padding-left: 2rem !important;
-				padding-right: 0 !important;
-				margin-bottom: 0.5rem !important;
+				padding: 0.55rem 0 !important;
 				page-break-inside: avoid;
 			}
 
-			.timeline-item::after,
-			.timeline-item.left::after,
-			.timeline-item.right::after {
-				left: 5px !important;
-				right: auto !important;
-				width: 14px !important;
-				height: 14px !important;
+			.timeline-item::after {
+				display: none !important;
 			}
 
 			.timeline-content {
-				padding: 0.6rem 0.8rem !important;
+				padding: 0 0 0 0.55rem !important;
+				border-left: 2px solid #dbe2e8 !important;
+				border-radius: 0 !important;
+				box-shadow: none !important;
 			}
 
 			.timeline-date {
-				font-size: 0.75rem !important;
-				margin-bottom: 0.2rem !important;
+				font-size: 8px !important;
+				line-height: 1.4 !important;
+				padding-top: 0.05rem !important;
 			}
 
 			.timeline-content h4 {
-				font-size: 0.9rem !important;
+				font-size: 10px !important;
 				margin-bottom: 0.15rem !important;
 			}
 
 			.timeline-content h5 {
-				font-size: 0.8rem !important;
-				margin-bottom: 0.4rem !important;
+				font-size: 9px !important;
+				margin-bottom: 0.3rem !important;
+			}
+
+			.timeline-content li {
+				margin-bottom: 0.2rem !important;
+				line-height: 1.35 !important;
+			}
+
+			/* Beim Drucken immer die kompakte Listenansicht verwenden. */
+			.timeline.is-timeline {
+				padding-top: 0 !important;
+				padding-left: 0 !important;
+				border-top: 1px solid #dbe2e8 !important;
+			}
+
+			.timeline.is-timeline::before {
+				display: none !important;
+			}
+
+			.timeline.is-timeline .timeline-item,
+			.timeline.is-timeline .timeline-item.left,
+			.timeline.is-timeline .timeline-item.right {
+				position: static !important;
+				border: 0 !important;
+				border-bottom: 1px solid #dbe2e8 !important;
+			}
+
+			.timeline.is-timeline .timeline-item::after {
+				display: none !important;
+			}
+
+			.timeline.is-timeline .timeline-date,
+			.timeline.is-timeline .timeline-content {
+				grid-column: auto !important;
+				grid-row: auto !important;
+			}
+
+			.timeline.is-timeline .timeline-date {
+				text-align: left !important;
+			}
+
+			.timeline.is-timeline .timeline-content {
+				background: transparent !important;
+				border: 0 !important;
+				border-left: 2px solid #dbe2e8 !important;
+				border-radius: 0 !important;
+				box-shadow: none !important;
 			}
 
 			/* ── Skills Grid: 4 Spalten ── */
@@ -845,6 +1009,29 @@
 
 			.info-list i {
 				font-size: 1rem !important;
+			}
+
+			/* Hobbys kompakt halten: eine schmale Zeile statt großer Kacheln. */
+			#hobbies .skills-grid {
+				grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+				gap: 0.3rem !important;
+				margin: 0.4rem 0 !important;
+			}
+
+			#hobbies .skill-card {
+				min-height: 0 !important;
+				padding: 0.3rem 0.2rem !important;
+			}
+
+			#hobbies .skill-card .icon {
+				font-size: 1rem !important;
+				margin-bottom: 0.15rem !important;
+			}
+
+			#hobbies .skill-card h4 {
+				font-size: 0.7rem !important;
+				line-height: 1.2 !important;
+				margin: 0 !important;
 			}
 
 			/* ── Typografie ── */
@@ -1111,11 +1298,16 @@
 			<!-- Experience Section -->
 			<section id="experience" class="section">
 				<div class="container">
-					<h3>Berufserfahrung</h3>
-					<div class="timeline">
+					<div class="resume-section-heading">
+						<h3>Berufserfahrung</h3>
+						<button class="resume-view-toggle" type="button" aria-controls="experience-list education-list" aria-pressed="false" aria-label="Listenansicht für Berufserfahrung und Bildung; zur Timeline-Ansicht wechseln" title="Listenansicht für Berufserfahrung und Bildung; zur Timeline-Ansicht wechseln">
+							<i class="fas fa-list" aria-hidden="true"></i>
+						</button>
+					</div>
+					<div class="timeline" id="experience-list">
 						<div class="timeline-item right">
+							<div class="timeline-date">01/2023 - heute</div>
 							<div class="timeline-content">
-								<div class="timeline-date">01/2023 - heute</div>
 								<h4>Software Engineer</h4>
 								<h5>CARIAD SE, PMT, Ingolstadt</h5>
 								<ul>
@@ -1129,8 +1321,8 @@
 							</div>
 						</div>
 						<div class="timeline-item left">
+							<div class="timeline-date">03/2020 - 12/2022</div>
 							<div class="timeline-content">
-								<div class="timeline-date">03/2020 - 12/2022</div>
 								<h4>Software Architekt</h4>
 								<h5>Continental Automotive GmbH, he[a]t SW Technologies, Regensburg</h5>
 								<ul>
@@ -1144,8 +1336,8 @@
 							</div>
 						</div>
 						<div class="timeline-item right">
+							<div class="timeline-date">07/2017 - 03/2020</div>
 							<div class="timeline-content">
-								<div class="timeline-date">07/2017 - 03/2020</div>
 								<h4>Software Engineer</h4>
 								<h5>Continental Automotive GmbH, Software Center of Competence, Regensburg</h5>
 								<ul>
@@ -1157,8 +1349,8 @@
 							</div>
 						</div>
 						<div class="timeline-item left">
+							<div class="timeline-date">04/2013 - 06/2017</div>
 							<div class="timeline-content">
-								<div class="timeline-date">04/2013 - 06/2017</div>
 								<h4>Software Engineer</h4>
 								<h5>Continental Automotive GmbH, AUTOSAR Center, Regensburg</h5>
 								<ul>
@@ -1171,8 +1363,8 @@
 							</div>
 						</div>
 						<div class="timeline-item right">
+							<div class="timeline-date">08/2012 - 02/2013</div>
 							<div class="timeline-content">
-								<div class="timeline-date">08/2012 - 02/2013</div>
 								<h4>Masterand</h4>
 								<h5>Continental Engineering Services GmbH, AUTOSAR Center, Regensburg</h5>
 								<ul>
@@ -1181,8 +1373,8 @@
 							</div>
 						</div>
 						<div class="timeline-item left">
+							<div class="timeline-date">04/2011 - 05/2011</div>
 							<div class="timeline-content">
-								<div class="timeline-date">04/2011 - 05/2011</div>
 								<h4>Werkstudent</h4>
 								<h5>Realtime Technology AG, München</h5>
 								<ul>
@@ -1191,8 +1383,8 @@
 							</div>
 						</div>
 						<div class="timeline-item right">
+							<div class="timeline-date">10/2010 - 03/2011</div>
 							<div class="timeline-content">
-								<div class="timeline-date">10/2010 - 03/2011</div>
 								<h4>Bachelorand</h4>
 								<h5>Realtime Technology AG, München</h5>
 								<ul>
@@ -1201,8 +1393,8 @@
 							</div>
 						</div>
 						<div class="timeline-item left">
+							<div class="timeline-date">09/2009 - 02/2010</div>
 							<div class="timeline-content">
-								<div class="timeline-date">09/2009 - 02/2010</div>
 								<h4>Praktikant</h4>
 								<h5>OptWare GmbH, Regensburg</h5>
 								<ul>
@@ -1218,10 +1410,10 @@
 			<section id="education" class="section" style="background: #f8f9fa;">
 				<div class="container">
 					<h3>Bildung</h3>
-					<div class="timeline">
+					<div class="timeline" id="education-list">
 						<div class="timeline-item right">
+							<div class="timeline-date">10/2011 - 02/2013</div>
 							<div class="timeline-content">
-								<div class="timeline-date">10/2011 - 02/2013</div>
 								<h4>Masterstudium Informatik</h4>
 								<h5>Hochschule Regensburg</h5>
 								<ul>
@@ -1230,8 +1422,8 @@
 							</div>
 						</div>
 						<div class="timeline-item left">
+							<div class="timeline-date">10/2007 - 09/2011</div>
 							<div class="timeline-content">
-								<div class="timeline-date">10/2007 - 09/2011</div>
 								<h4>Bachelorstudium Informatik</h4>
 								<h5>Hochschule Ingolstadt</h5>
 								<ul>
@@ -1240,8 +1432,8 @@
 							</div>
 						</div>
 						<div class="timeline-item right">
+							<div class="timeline-date">09/2005 - 07/2007</div>
 							<div class="timeline-content">
-								<div class="timeline-date">09/2005 - 07/2007</div>
 								<h4>Fachhochschulreife</h4>
 								<h5>Maximilian-Kolbe-Schule Neumarkt (Fachoberschule)</h5>
 								<ul>
@@ -1317,6 +1509,31 @@
 					}
 				});
 			});
+			
+			// A shared view switch for work experience and education
+			const resumeViewToggle = document.querySelector('.resume-view-toggle');
+			const resumeLists = [
+				document.getElementById('experience-list'),
+				document.getElementById('education-list')
+			].filter(Boolean);
+			
+			if (resumeViewToggle && resumeLists.length) {
+				resumeViewToggle.addEventListener('click', () => {
+					const timelineActive = !resumeLists[0].classList.contains('is-timeline');
+					resumeLists.forEach(list => list.classList.toggle('is-timeline', timelineActive));
+					
+					const icon = resumeViewToggle.querySelector('i');
+					icon.classList.toggle('fa-code-branch', timelineActive);
+					icon.classList.toggle('fa-list', !timelineActive);
+					
+					const label = timelineActive
+						? 'Timeline-Ansicht für Berufserfahrung und Bildung aktiv; zur Listenansicht wechseln'
+						: 'Listenansicht für Berufserfahrung und Bildung aktiv; zur Timeline-Ansicht wechseln';
+					resumeViewToggle.setAttribute('aria-pressed', String(timelineActive));
+					resumeViewToggle.setAttribute('aria-label', label);
+					resumeViewToggle.setAttribute('title', label);
+				});
+			}
 			
 			// Add fade-in animation to sections
 			const sections = document.querySelectorAll('.section');
