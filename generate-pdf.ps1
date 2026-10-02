@@ -3,11 +3,14 @@
 # Generiert ein PDF des Lebenslaufs via Microsoft Edge (headless)
 # Aufruf: .\generate-pdf.ps1
 #         .\generate-pdf.ps1 -OutputName "MeinCV.pdf"
+#         .\generate-pdf.ps1 -Language en
 #         .\generate-pdf.ps1 -Open
 # ============================================================
 
 param(
     [string]$OutputName = "Julian_Banek_CV.pdf",
+    [ValidateSet("de", "en")]
+    [string]$Language = "de",
     [switch]$Open
 )
 
@@ -19,11 +22,12 @@ if (-not (Test-Path $edgePath)) {
 }
 
 $scriptDir  = Split-Path -Parent $MyInvocation.MyCommand.Path
-$htmlFile   = Join-Path $scriptDir "index.html"
+$htmlFileName = if ($Language -eq "en") { "index_en.html" } else { "index.html" }
+$htmlFile   = Join-Path $scriptDir $htmlFileName
 $outputPdf  = Join-Path $scriptDir $OutputName
 
 if (-not (Test-Path $htmlFile)) {
-    Write-Error "index.html nicht gefunden: $htmlFile"
+    Write-Error "$htmlFileName nicht gefunden: $htmlFile"
     exit 1
 }
 
@@ -32,6 +36,7 @@ $fileUrl = "file:///" + ($htmlFile -replace '\\', '/')
 
 Write-Host ""
 Write-Host "  📄  Generiere PDF..." -ForegroundColor Cyan
+Write-Host "  Sprache: $Language"
 Write-Host "  Quelle : $htmlFile"
 Write-Host "  Ausgabe: $outputPdf"
 Write-Host ""

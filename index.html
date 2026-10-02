@@ -25,16 +25,18 @@
 			</div>
 			<h1><a href="#">Julian Banek</a></h1>
 			<p class="subtitle">Senior Software Engineer</p>
-			
+
+			<div class="sidebar-divider" aria-hidden="true"></div>
 			<nav>
 				<ul>
-					<li><a href="#about" class="active">Über mich</a></li>
-					<li><a href="#skills">Fachliche Fähigkeiten</a></li>
-					<li><a href="#experience">Berufserfahrung</a></li>
-					<li><a href="#education">Bildung</a></li>
-					<li><a href="#hobbies">Hobbys</a></li>
+					<li><a href="#about" class="active" data-i18n="nav.about">Über mich</a></li>
+					<li><a href="#skills" data-i18n="nav.skills">Fachliche Fähigkeiten</a></li>
+					<li><a href="#experience" data-i18n="nav.experience">Berufserfahrung</a></li>
+					<li><a href="#education" data-i18n="nav.education">Bildung</a></li>
+					<li><a href="#hobbies" data-i18n="nav.hobbies">Hobbys</a></li>
 				</ul>
 			</nav>
+			<div class="sidebar-divider" aria-hidden="true"></div>
 			
 			<div class="social-icons">
 				<a href="https://www.xing.com/profile/Julian_Banek/" aria-label="Xing Profil">
@@ -46,6 +48,11 @@
 				<a href="mailto:julian.banek@web.de" aria-label="E-Mail senden">
 					<i class="fas fa-envelope"></i>
 				</a>
+			</div>
+			<div class="sidebar-divider" aria-hidden="true"></div>
+			<div class="language-switch" role="group" aria-label="Sprache auswählen">
+				<a class="language-option is-active" href="index.html" lang="de" aria-current="page"><img class="language-flag" src="images/flags/de.svg" alt="" aria-hidden="true" />DE</a>
+				<a class="language-option" href="index_en.html" lang="en"><img class="language-flag" src="images/flags/en.svg" alt="" aria-hidden="true" />EN</a>
 			</div>
 		</div>
 
@@ -72,15 +79,15 @@
 					<img src="images/banner.jpg" alt="Banner Bild - Professioneller Hintergrund" />
 				</div>
 				<div class="container">
-					<h2><span class="typewriter-text">Hallo, ich bin Julian.</span></h2>
+					<h2><span class="typewriter-text" data-i18n="about.greeting">Hallo, ich bin Julian.</span></h2>
 					
-					<h3>Steckbrief</h3>
+					<h3 data-i18n="about.facts">Steckbrief</h3>
 					<div class="info-box">
 						<ul class="info-list">
 							<li>
 								<i class="fas fa-birthday-cake"></i>
 								<div>
-									<strong>Geboren:</strong>
+									<strong data-i18n="facts.born">Geboren:</strong>
 									30.05.1989<br/>
 									Neumarkt in der Oberpfalz
 								</div>
@@ -88,56 +95,56 @@
 							<li>
 								<i class="fas fa-users"></i>
 								<div>
-									<strong>Familie:</strong>
-									Verheiratet<br/>
-									Zwei Kinder
+									<strong data-i18n="facts.family">Familie:</strong>
+									<span data-i18n="facts.married">Verheiratet</span><br/>
+									<span data-i18n="facts.children">Zwei Kinder</span>
 								</div>
 							</li>
 							<li>
 								<i class="fas fa-flag"></i>
 								<div>
-									<strong>Nationalität:</strong>
-									Deutsch
+									<strong data-i18n="facts.nationality">Nationalität:</strong>
+									<span data-i18n="facts.german">Deutsch</span>
 								</div>
 							</li>
 							<li>
 								<i class="fas fa-map-pin"></i>
 								<div>
-									<strong>Wohnort:</strong>
+									<strong data-i18n="facts.location">Wohnort:</strong>
 									92339 Beilngries
 								</div>
 							</li>
 							<li>
 								<i class="fas fa-envelope"></i>
 								<div>
-									<strong>E-Mail:</strong>
+									<strong data-i18n="facts.email">E-Mail:</strong>
 									julian.banek@web.de
 								</div>
 							</li>
 						</ul>
 					</div>
 				
-				<h3 class="profile-heading">Profil</h3>
+				<h3 class="profile-heading" data-i18n="about.profile">Profil</h3>
 				<div class="info-box">
 					<p class="profile-intro">
-						Senior Software Engineer mit über 13 Jahren Erfahrung in der professionellen Softwareentwicklung mit Schwerpunkt auf Backend-Entwicklung, Softwarearchitektur und Automatisierung.
+						<span data-i18n="about.intro">Senior Software Engineer mit über 13 Jahren Erfahrung in der professionellen Softwareentwicklung mit Schwerpunkt auf Backend-Entwicklung, Softwarearchitektur und Automatisierung.</span>
 					</p>
 					<ul class="profile-highlights">
 						<li class="profile-highlight">
 							<i class="fas fa-check-circle profile-highlight-icon"></i>
-							<span>CI/CD-Pipelines: Konzeption, Umsetzung und Automatisierung von Build-, Test- und Deployment-Prozessen einschließlich containerisierter Entwicklungs- und Deployment-Umgebungen</span>
+							<span data-i18n="about.highlight1">CI/CD-Pipelines: Konzeption, Umsetzung und Automatisierung von Build-, Test- und Deployment-Prozessen einschließlich containerisierter Entwicklungs- und Deployment-Umgebungen</span>
 						</li>
 						<li class="profile-highlight">
 							<i class="fas fa-check-circle profile-highlight-icon"></i>
-							<span>Softwarearchitektur & Engineering: Entwicklung skalierbarer und wartbarer Systeme, darunter REST-APIs, Microservices und datengetriebene Anwendungen, unter Anwendung etablierter Architekturprinzipien und Design Patterns</span>
+							<span data-i18n="about.highlight2">Softwarearchitektur & Engineering: Entwicklung skalierbarer und wartbarer Systeme, darunter REST-APIs, Microservices und datengetriebene Anwendungen, unter Anwendung etablierter Architekturprinzipien und Design Patterns</span>
 						</li>
 						<li class="profile-highlight">
 							<i class="fas fa-check-circle profile-highlight-icon"></i>
-							<span>Technische & fachliche Verantwortung: Erfahrung in der technischen Koordination von Entwicklungsteams, Anforderungsdefinition, Schnittstellengestaltung und Softwarearchitektur – unter anderem durch die Übernahme von Product-Owner-Rollen</span>
+							<span data-i18n="about.highlight3">Technische & fachliche Verantwortung: Erfahrung in der technischen Koordination von Entwicklungsteams, Anforderungsdefinition, Schnittstellengestaltung und Softwarearchitektur – unter anderem durch die Übernahme von Product-Owner-Rollen</span>
 						</li>
 						<li class="profile-highlight">
 							<i class="fas fa-check-circle profile-highlight-icon"></i>
-							<span>Technologieaffinität: Schnelle Einarbeitung in neue Technologien und deren praktische Integration in Entwicklungs- und Engineering-Prozesse.</span>
+							<span data-i18n="about.highlight4">Technologieaffinität: Schnelle Einarbeitung in neue Technologien und deren praktische Integration in Entwicklungs- und Engineering-Prozesse.</span>
 						</li>
 					</ul>
 				</div>
@@ -146,7 +153,7 @@
 
 		<section id="skills" class="section">
 			<div class="container">
-				<h3>Fachliche Fähigkeiten</h3>
+				<h3 data-i18n="nav.skills">Fachliche Fähigkeiten</h3>
 					<div class="skills-grid">
 						<div class="skill-card">
 							<i class="fas fa-ruler-combined icon"></i>
@@ -333,7 +340,7 @@
 								<h4>Werkstudent</h4>
 								<h5>Realtime Technology AG, München</h5>
 								<ul>
-									<li>Konzeption und Programmierung einer Oberflächenkomponente mit Hilfe der Programmiersprache C++ und Qt</li>
+									<li>Konzeption und Entwicklung einer Oberflächenkomponente mit C++ und Qt</li>
 								</ul>
 							</div>
 						</div>
@@ -343,7 +350,7 @@
 								<h4>Bachelorand</h4>
 								<h5>Realtime Technology AG, München</h5>
 								<ul>
-									<li>Thema: Steuerung einer immersiven VR-Szene mit Hilfe eines mobilen Endgeräts (Virtual Reality)</li>
+									<li>Thema: Steuerung einer immersiven VR-Szene mit Hilfe eines mobilen Endgeräts (Android, Java, Virtual Reality)</li>
 								</ul>
 							</div>
 						</div>
@@ -353,7 +360,7 @@
 								<h4>Praktikant</h4>
 								<h5>OptWare GmbH, Regensburg</h5>
 								<ul>
-									<li>Praxissemester im Bereich Algorithmen- und Softwareentwicklung: Implementierung einer Anwenderschnittstelle zur Darstellung von Produktionssequenzen</li>
+									<li>Praxissemester im Bereich Algorithmen- und Softwareentwicklung: Entwicklung einer grafischen Anwenderschnittstelle mit Java und Eclipse SWT zur Visualisierung von Produktionssequenzen</li>
 								</ul>
 							</div>
 						</div>

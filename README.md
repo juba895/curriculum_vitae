@@ -16,7 +16,7 @@
 
 ## Description
 
-Personal CV website of Julian Banek.
+Personal CV website of Julian Banek. The German version is the default page; the [English CV](index_en.html) is available via the language switch in the sidebar.
 
 ---
 
@@ -60,6 +60,12 @@ Requirements: **Microsoft Edge** must be installed.
 
 # Custom file name
 .\generate-pdf.ps1 -OutputName "Banek_Julian_CV.pdf"
+
+# English version (German is the default)
+.\generate-pdf.ps1 -Language en
+
+# English version with a custom file name, then open the PDF
+.\generate-pdf.ps1 -Language en -OutputName "Julian_Banek_CV_EN.pdf" -Open
 ```
 
 > **Note:** If the script fails because the file is still open, close your PDF viewer first and run the command again.
