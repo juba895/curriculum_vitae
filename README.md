@@ -22,28 +22,7 @@ Personal CV website of Julian Banek. The German version is the default page; the
 
 ## Open website locally
 
-**Option A – Open directly in browser (simplest method)**
-
-1. Clone or download the repository:
-   ```bash
-   git clone https://github.com/juba895/curriculum_vitae.git
-   cd curriculum_vitae
-   ```
-2. Double-click `index.html` to open it in your browser
-   *(or right-click → "Open with" → select browser)*
-
-**Option B – Start a local web server (recommended)**
-
-With Python (version 3+):
-```bash
-python -m http.server 8080
-```
-Then open in your browser: [http://localhost:8080](http://localhost:8080)
-
-With Node.js (`npx`):
-```bash
-npx serve .
-```
+Open `index.html` in a browser to view the German CV, or open `index_en.html` for the English version. You can also switch languages using the language switch on the page.
 
 ---
 
@@ -76,7 +55,8 @@ Requirements: **Microsoft Edge** must be installed.
 
 ```
 curriculum_vitae/
-├── index.html          # Main page
+├── index.html          # German CV
+├── index_en.html       # English CV
 ├── generate-pdf.ps1    # PDF generation script (PowerShell / Edge)
 ├── images/             # Avatar & banner images
 └── assets/
