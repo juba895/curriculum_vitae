@@ -12,8 +12,6 @@
 		
 		<!-- Preload critical images -->
 		<link rel="preload" as="image" href="images/avatar.jpg" />
-		<link rel="preload" as="image" href="images/banner.jpg" />
-		
 		<link rel="stylesheet" href="assets/css/cv.css" />
 		<script src="assets/js/cv.js" defer></script>
 	</head>
@@ -60,26 +58,43 @@
 		<div class="main-content">
 			<!-- About Section -->
 			<section id="about" class="section">
-				<div class="banner">
-					<div class="code-animation">
-						<div class="code-line">class SoftwareEngineer { constructor() { this.skills = ['Java', 'Python', 'CI/CD']; } }</div>
-						<div class="code-line">const pipeline = new GitHubActions({ trigger: 'push', steps: ['build', 'test', 'deploy'] });</div>
-						<div class="code-line">import { DevOps, GitHubActions, Jenkins } from '@cicd/tools';</div>
-						<div class="code-line">SELECT * FROM experience WHERE years &gt; 13 AND domain = 'automotive';</div>
-						<div class="code-line">kubectl apply -f deployment.yaml &amp;&amp; docker build -t app:latest .</div>
-						<div class="code-line">@RestController public class ApiController { @GetMapping("/projects") }</div>
-						<div class="code-line">git commit -m "feat: implement CI/CD optimization" &amp;&amp; git push origin main</div>
-						<div class="code-line">def optimize_build_time(): return reduce_by_percentage(60)</div>
-					</div>
-					<div class="banner-content">
-						<h1 class="banner-title">Julian Banek</h1>
-						<p class="banner-subtitle">Senior Software Engineer</p>
-						<div class="banner-tech">Software Engineering • Software Architecture • Backend • CI/CD • Development &amp; Build Toolchains</div>
-					</div>
-					<img src="images/banner.jpg" alt="Abstract professional background" />
-				</div>
 				<div class="container">
 					<!-- <h2><span class="typewriter-text">Hello, I’m Julian.</span></h2> <!-- IGNORE -->
+					<header class="hero">
+						<div class="hero__top">
+							<span class="hero__status"><span class="hero__status-dot" aria-hidden="true"></span>ENGINEERING PROFILE</span>
+						</div>
+						<div class="hero__content">
+							<div class="hero__intro">
+								<p class="hero__eyebrow">SOFTWARE ARCHITECT</p>
+								<h2 class="hero__title">Julian <span>Banek.</span></h2>
+								<p class="hero__description">I build robust backend systems and clear architectures, and automate the path from build to deployment.</p>
+								<ul class="hero__tags" aria-label="Areas of focus">
+									<li>Software engineering</li>
+									<li>Software architecture</li>
+									<li>CI/CD</li>
+									<li>Development &amp; build toolchains</li>
+								</ul>
+							</div>
+							<aside class="hero-terminal" aria-label="CI/CD pipeline example">
+								<div class="hero-terminal__header">
+									<span class="hero-terminal__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+									<span>pipeline.yml</span>
+									<span class="hero-terminal__branch">main</span>
+								</div>
+								<div class="hero-terminal__body" aria-hidden="true">
+									<p class="hero-terminal__comment"># delivery pipeline</p>
+									<p><span class="hero-code-key">stages</span><span class="hero-code-muted">:</span></p>
+									<p class="hero-terminal__step"><span class="hero-code-muted">01</span> build</p>
+									<p class="hero-terminal__step"><span class="hero-code-muted">02</span> test</p>
+									<p class="hero-terminal__step"><span class="hero-code-muted">03</span> deploy</p>
+									<div class="hero-terminal__divider"></div>
+									<p class="hero-terminal__result"><span class="hero__status-dot" aria-hidden="true"></span>3 STAGES · AUTOMATED</p>
+								</div>
+							</aside>
+						</div>
+						<div class="hero__footer"><span>13+ YEARS OF EXPERIENCE</span></div>
+					</header>
 
 					<h3>At a glance</h3>
 					<div class="info-box">
@@ -125,9 +140,6 @@
 					</div>
 					<h3 class="profile-heading">Profile</h3>
 					<div class="info-box">
-						<p class="profile-intro">
-							Senior Software Engineer with more than 13 years of professional software development experience, specializing in backend development, software architecture, and automation
-						</p>
 						<ul class="profile-highlights">
 							<li class="profile-highlight">
 								<i class="fas fa-check-circle profile-highlight-icon"></i>
