@@ -1,0 +1,327 @@
+/* Print layout and pagination */
+@media print {
+	@page {
+		size: A4;
+		margin: 1.2cm;
+
+		@bottom-center {
+			content: "- " counter(page) " -";
+			font-family: "Segoe UI", Tahoma, sans-serif;
+			font-size: 13.7px; /* 9px nach html-zoom 0.658 */
+			color: #687482;
+		}
+	}
+
+	/* main-Layout: Edge skaliert die Seite dort auf ca. 66 % (Shrink-to-fit).
+	   Hier explizit nachgebildet; der Hero wird wieder auf 100 % zurueckskaliert. */
+	html { zoom: 0.658; }
+	.hero { zoom: 1.52; }
+
+	/* Farben und Animationen */
+	*, *::before, *::after {
+		animation: none !important;
+		transition: none !important;
+		print-color-adjust: exact !important;
+		-webkit-print-color-adjust: exact !important;
+	}
+
+	/* Reset the JS-controlled fade-in state for print. */
+	.section,
+	.section.fade-in-pending {
+		opacity: 1 !important;
+		transform: none !important;
+		background: #fff !important;
+	}
+
+	body {
+		font-size: 10.5px;
+		line-height: 1.4;
+		background: white !important;
+	}
+
+	.info-box {
+		background: #fff !important;
+		box-shadow: none !important;
+		border: 1px solid #e3e7eb !important;
+	}
+
+	.info-list li,
+	.info-list li:hover { background: transparent !important; }
+	.info-box p,
+	.info-box li,
+	.skill-card li,
+	.timeline-content li { font-size: 10.5px !important; }
+	.profile-intro {
+		line-height: 1.45 !important;
+		margin-bottom: 0.5rem !important;
+	}
+	.profile-highlight {
+		gap: 0.6rem !important;
+		padding: 0.3rem 0 !important;
+	}
+	.profile-highlight-icon {
+		font-size: 0.95rem !important;
+		margin-top: 0.15rem !important;
+	}
+	.hero {
+		margin-bottom: 0.45rem !important;
+		left: auto !important;
+		width: auto !important;
+		margin-left: 0 !important;
+		padding: 0.45rem 0.65rem !important;
+		border: 0 !important;
+		border-radius: 8px !important;
+		background: linear-gradient(110deg, #1e2530 0%, #2d3547 100%) !important;
+		box-shadow: none !important;
+		color: #f3f6fc !important;
+		page-break-inside: avoid;
+	}
+	.hero__top,
+	.hero-terminal,
+	.hero__footer,
+	.hero__tags { display: none !important; }
+	.hero__content {
+		display: grid !important;
+		grid-template-columns: 58px minmax(0, 1fr) !important;
+		align-items: center !important;
+		gap: 0.6rem !important;
+		padding: 0 !important;
+	}
+	.hero__portrait {
+		display: block !important;
+		width: 54px !important;
+		height: 54px !important;
+		opacity: 1 !important;
+		border: 1px solid rgba(255,255,255,0.5) !important;
+		border-radius: 50% !important;
+		object-fit: cover !important;
+	}
+	.hero__title { margin: 0.05rem 0 0.12rem !important; color: #f3f6fc !important; font-size: 1.25rem !important; text-align: left !important; }
+	.hero__title::after { display: none !important; }
+	.hero__title span { color: #8fb5d5 !important; }
+	.hero__eyebrow { color: #8fb5d5 !important; font-size: 7px !important; }
+	.hero__description { color: #d1d9e4 !important; font-size: 9px !important; line-height: 1.25 !important; }
+	.hero__tags { margin: 0.35rem 0 !important; }
+	.hero__tags li { border-color: #dbe2e8 !important; color: #2c3e50 !important; }
+
+	.site-header { display: none !important; }
+
+	/* ── Main Content ── */
+	.main-content { margin-left: 0 !important; }
+	/* Typewriter-Effekt deaktivieren */
+	.typewriter-text {
+		border-right: none !important;
+		white-space: normal !important;
+		overflow: visible !important;
+		animation: none !important;
+	}
+
+	/* ── Sektionen ── */
+	.section { padding: 0.5rem 0 !important; }
+	.resume-view-toggle { display: none !important; }
+	.container { padding: 0 0.5rem !important; }
+
+	/* Seitenumbrüche */
+	#skills { page-break-before: auto; }
+	#experience {
+		break-before: page;
+		page-break-before: always;
+	}
+	#education {
+		break-before: auto;
+		page-break-before: auto;
+		break-inside: avoid-page;
+		page-break-inside: avoid;
+	}
+	#hobbies { page-break-before: auto; }
+	#hobbies { padding-top: 1.25rem !important; }
+
+	.timeline-item,
+	.timeline-content,
+	.skill-card,
+	.info-box { page-break-inside: avoid; }
+
+	/* ── Erfahrung und Bildung: kompakte Datums-Liste ── */
+	.timeline { margin: 0.35rem auto 0 !important; }
+
+	.timeline-item,
+	.timeline-item.left,
+	.timeline-item.right {
+		grid-template-columns: 95px minmax(0, 1fr) !important;
+		gap: 0.5rem !important;
+		width: 100% !important;
+		padding: 0.55rem 0 !important;
+		page-break-inside: avoid;
+	}
+	#experience .timeline.is-timeline .timeline-item,
+	#experience .timeline.is-timeline .timeline-item.left,
+	#experience .timeline.is-timeline .timeline-item.right {
+		display: grid !important;
+		grid-template-columns: 95px minmax(0, 1fr) !important;
+		gap: 0.5rem !important;
+		padding: 0.55rem 0 !important;
+	}
+	#experience .timeline.is-timeline .timeline-date,
+	#experience .timeline.is-timeline .timeline-content {
+		grid-column: auto !important;
+		grid-row: auto !important;
+	}
+
+	.timeline-item::after { display: none !important; }
+
+	.timeline-content {
+		padding: 0 0 0 0.55rem !important;
+		border-left: 2px solid #dbe2e8 !important;
+		border-radius: 0 !important;
+		box-shadow: none !important;
+	}
+
+	.timeline-date {
+		font-size: 10px !important;
+		line-height: 1.4 !important;
+		padding-top: 0.05rem !important;
+	}
+
+	.timeline-content h4 {
+		font-size: 11px !important;
+		margin-bottom: 0.15rem !important;
+	}
+
+	.timeline-content h5 {
+		font-size: 10.5px !important;
+		margin-bottom: 0.3rem !important;
+	}
+
+	.timeline-content li {
+		margin-bottom: 0.2rem !important;
+		line-height: 1.35 !important;
+	}
+
+	/* Beim Drucken immer die kompakte Listenansicht verwenden. */
+	.timeline.is-timeline {
+		padding-top: 0 !important;
+		padding-left: 0 !important;
+		border-top: 1px solid #dbe2e8 !important;
+	}
+
+	.timeline.is-timeline::before { display: none !important; }
+
+	.timeline.is-timeline .timeline-item,
+	.timeline.is-timeline .timeline-item.left,
+	.timeline.is-timeline .timeline-item.right {
+		position: static !important;
+		border: 0 !important;
+		border-bottom: 1px solid #dbe2e8 !important;
+	}
+
+	.timeline.is-timeline .timeline-item::after { display: none !important; }
+
+	.timeline.is-timeline .timeline-date,
+	.timeline.is-timeline .timeline-content {
+		grid-column: auto !important;
+		grid-row: auto !important;
+	}
+
+	.timeline.is-timeline .timeline-date { text-align: left !important; }
+
+	.timeline.is-timeline .timeline-content {
+		background: transparent !important;
+		border: 0 !important;
+		border-left: 2px solid #dbe2e8 !important;
+		border-radius: 0 !important;
+		box-shadow: none !important;
+	}
+
+	/* ── Skills Grid: drei Spalten für besser lesbare Karten ── */
+	.skills-grid {
+		grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+		gap: 0.4rem !important;
+		margin: 0.5rem 0 !important;
+	}
+
+	.skill-card {
+		padding: 0.55rem !important;
+		box-shadow: none !important;
+		border: 1px solid #ddd !important;
+	}
+
+	.skill-card li {
+		line-height: 1.3 !important;
+		margin-bottom: 0.3rem !important;
+	}
+
+	.skill-card .icon {
+		display: block !important;
+		font-size: 1.4rem !important;
+		line-height: 1 !important;
+		margin: 0 auto 0.35rem !important;
+	}
+
+	.skill-card h4 {
+		font-size: 0.8rem !important;
+		margin: 0 0 0.8rem !important;
+	}
+
+	/* ── Info-Liste ── */
+	.info-box {
+		padding: 0.75rem !important;
+		margin: 0.5rem 0 !important;
+	}
+
+	.info-list {
+		grid-template-columns: repeat(3, 1fr) !important;
+		gap: 0.5rem !important;
+	}
+
+	.info-list li {
+		padding: 0.4rem !important;
+		gap: 0.5rem !important;
+	}
+
+	.info-list i { font-size: 1rem !important; }
+
+	/* Hobbys kompakt halten: eine schmale Zeile statt großer Kacheln. */
+	#hobbies .skills-grid {
+		grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+		gap: 0.3rem !important;
+		margin: 0.4rem 0 !important;
+	}
+
+	#hobbies .skill-card {
+		min-height: 0 !important;
+		padding: 0.3rem 0.2rem !important;
+	}
+
+	#hobbies .skill-card .icon {
+		font-size: 1rem !important;
+		margin-bottom: 0.15rem !important;
+	}
+
+	#hobbies .skill-card h4 {
+		font-size: 0.7rem !important;
+		line-height: 1.2 !important;
+		margin: 0 !important;
+	}
+
+	/* ── Typografie ── */
+	h2, h3, h4, h5 {
+		break-after: avoid !important;
+		page-break-after: avoid !important;
+	}
+
+	h2 {
+		font-size: 1.1rem !important;
+		margin-bottom: 0.4rem !important;
+	}
+
+	h2::after { margin: 0.3rem auto !important; }
+
+	h3 {
+		font-size: 0.95rem !important;
+		padding-left: 0.75rem !important;
+		margin-bottom: 0.5rem !important;
+	}
+
+	/* ── Footer ausblenden ── */
+	footer { display: none !important; }
+}
