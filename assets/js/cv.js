@@ -54,9 +54,38 @@ document.addEventListener('DOMContentLoaded', function() {
 		});
 	}, observerOptions);
 	sections.forEach(section => {
+		// Keep the initially visible hero from flashing out before the observer runs.
+		if (section.id === 'about') return;
 		section.classList.add('fade-in-pending');
 		observer.observe(section);
 	});
+
+	// Cross-fade the large hero portrait into the compact sticky-header avatar.
+	const heroPortrait = document.querySelector('.hero__portrait');
+	const headerAvatar = document.querySelector('.site-header .avatar');
+	const siteHeader = document.querySelector('.site-header');
+	if (heroPortrait && headerAvatar && siteHeader) {
+		let portraitDocumentCenter = 0;
+		const measurePortrait = () => {
+			const rect = heroPortrait.getBoundingClientRect();
+			portraitDocumentCenter = rect.top + window.scrollY + rect.height / 2;
+		};
+		const updateAvatarTransfer = () => {
+			const headerCenter = headerAvatar.getBoundingClientRect().top + headerAvatar.getBoundingClientRect().height / 2;
+			const distance = portraitDocumentCenter - headerCenter;
+			const progress = distance > 0
+				? Math.min(1, Math.max(0, window.scrollY / distance))
+				: 0;
+			document.documentElement.style.setProperty('--avatar-transfer', progress.toFixed(3));
+		};
+		measurePortrait();
+		updateAvatarTransfer();
+		window.addEventListener('resize', () => {
+			measurePortrait();
+			updateAvatarTransfer();
+		});
+		window.addEventListener('scroll', updateAvatarTransfer, { passive: true });
+	}
 
 	// Navigation highlighting on scroll
 	function updateActiveNavigation() {
@@ -73,10 +102,10 @@ document.addEventListener('DOMContentLoaded', function() {
 	updateActiveNavigation();
 
 	// Lightbox for avatar
-	const avatar = document.querySelector('.site-header .avatar');
+	const avatars = document.querySelectorAll('.site-header .avatar, .hero__portrait');
 	const lightbox = document.getElementById('avatarLightbox');
-	if (avatar && lightbox) {
-		avatar.addEventListener('click', () => lightbox.classList.add('active'));
+	if (avatars.length && lightbox) {
+		avatars.forEach(avatar => avatar.addEventListener('click', () => lightbox.classList.add('active')));
 		lightbox.addEventListener('click', () => lightbox.classList.remove('active'));
 		document.addEventListener('keydown', e => {
 			if (e.key === 'Escape') lightbox.classList.remove('active');
