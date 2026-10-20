@@ -1,4 +1,9 @@
 /* Page-specific CV styles extracted from index.html. */
+:root {
+	/* Einheitliche Farbe fuer Fliesstext (Profil, Steckbrief, Skills, Erfahrung, Hobbys) */
+	--text-body: #666;
+}
+
 body {
 	margin: 0;
 	padding: 0;
@@ -377,10 +382,10 @@ body {
 
 .hero__tags li {
 	padding: 0.45rem 0.7rem;
-	border: 1px solid rgba(255, 255, 255, 0.82);
+	border: 1px solid rgba(255, 255, 255, 0.2);
 	border-radius: 6px;
-	color: #27364a;
-	background: #f3f6fc;
+	color: #e5edf6;
+	background: rgba(255, 255, 255, 0.08);
 	font-size: 0.78rem;
 	font-weight: 600;
 }
@@ -585,9 +590,28 @@ h3::before {
 	margin: 0 auto 0.6rem;
 }
 
+.skill-card h4 {
+	font-size: 1.3rem;
+	color: #2c3e50;
+	margin: 0 0 1.25rem;
+	font-weight: 600;
+}
+
+.skill-card p {
+	color: var(--text-body);
+	line-height: 1.6;
+	margin: 0;
+}
+
+.skill-card ul {
+	text-align: left;
+	margin: 0;
+	padding-left: 1.5rem;
+}
+
 .skill-card li {
 	margin-bottom: 0.85rem;
-	color: #666;
+	color: var(--text-body);
 }
 
 .skill-card li b {
@@ -595,6 +619,9 @@ h3::before {
 	font-weight: normal;
 	margin-bottom: 0.1rem;
 }
+
+/* Hobbys: Beschriftung wie Fliesstext */
+#hobbies .skill-card h4 { color: var(--text-body); }
 
 /* Info Box */
 .info-box {
@@ -620,6 +647,7 @@ h3::before {
 	gap: 1rem;
 	padding: 1rem;
 	border-radius: 10px;
+	color: var(--text-body);
 	transition: background 0.3s ease;
 }
 
@@ -642,6 +670,11 @@ h3::before {
 
 /* Profile presentation */
 .profile-heading { margin-top: 3rem; }
+.profile-intro {
+	color: var(--text-body);
+	line-height: 1.8;
+	margin: 0 0 1.25rem 0;
+}
 .profile-highlights {
 	list-style: none;
 	padding: 0;
@@ -652,6 +685,7 @@ h3::before {
 	display: flex;
 	align-items: flex-start;
 	gap: 1rem;
+	color: var(--text-body);
 }
 .profile-highlight-icon {
 	color: #2c3e50;
@@ -770,7 +804,7 @@ h3::before {
 
 .timeline-content li {
 	margin-bottom: 0.35rem;
-	color: #5f6872;
+	color: var(--text-body);
 	line-height: 1.55;
 }
 
@@ -924,15 +958,20 @@ h3::before {
 @media print {
 	@page {
 		size: A4;
-		margin: 0.95cm;
+		margin: 1.2cm;
 
 		@bottom-center {
 			content: "- " counter(page) " -";
 			font-family: "Segoe UI", Tahoma, sans-serif;
-			font-size: 9px;
+			font-size: 13.7px; /* 9px nach html-zoom 0.658 */
 			color: #687482;
 		}
 	}
+
+	/* main-Layout: Edge skaliert die Seite dort auf ca. 66 % (Shrink-to-fit).
+	   Hier explizit nachgebildet; der Hero wird wieder auf 100 % zurueckskaliert. */
+	html { zoom: 0.658; }
+	.hero { zoom: 1.52; }
 
 	/* Farben und Animationen */
 	*, *::before, *::after {
@@ -951,8 +990,8 @@ h3::before {
 	}
 
 	body {
-		font-size: 9.7px;
-		line-height: 1.3;
+		font-size: 10.5px;
+		line-height: 1.4;
 		background: white !important;
 	}
 
@@ -967,7 +1006,19 @@ h3::before {
 	.info-box p,
 	.info-box li,
 	.skill-card li,
-	.timeline-content li { font-size: 9.5px !important; }
+	.timeline-content li { font-size: 10.5px !important; }
+	.profile-intro {
+		line-height: 1.45 !important;
+		margin-bottom: 0.5rem !important;
+	}
+	.profile-highlight {
+		gap: 0.6rem !important;
+		padding: 0.3rem 0 !important;
+	}
+	.profile-highlight-icon {
+		font-size: 0.95rem !important;
+		margin-top: 0.15rem !important;
+	}
 	.hero {
 		margin-bottom: 0.45rem !important;
 		left: auto !important;
@@ -1008,21 +1059,6 @@ h3::before {
 	.hero__description { color: #d1d9e4 !important; font-size: 9px !important; line-height: 1.25 !important; }
 	.hero__tags { margin: 0.35rem 0 !important; }
 	.hero__tags li { border-color: #dbe2e8 !important; color: #2c3e50 !important; }
-	#about .profile-heading,
-	#about .profile-heading + .info-box { display: none !important; }
-	#about > .container > h3 { margin: 0.65rem 0 0.25rem !important; }
-	#about .info-box { padding: 0.3rem !important; margin: 0.25rem 0 0.4rem !important; }
-	#about .info-list { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 0.2rem !important; }
-	#about .info-list li { padding: 0.2rem !important; gap: 0.3rem !important; font-size: 8.5px !important; }
-	#about .info-list i { font-size: 0.85rem !important; }
-	.profile-highlight {
-		gap: 0.4rem !important;
-		padding: 0.2rem 0 !important;
-	}
-	.profile-highlight-icon {
-		font-size: 0.8rem !important;
-		margin-top: 0.1rem !important;
-	}
 
 	.site-header { display: none !important; }
 
@@ -1054,7 +1090,7 @@ h3::before {
 		page-break-inside: avoid;
 	}
 	#hobbies { page-break-before: auto; }
-	#hobbies { padding-top: 0.5rem !important; }
+	#hobbies { padding-top: 1.25rem !important; }
 
 	.timeline-item,
 	.timeline-content,
@@ -1070,7 +1106,7 @@ h3::before {
 		grid-template-columns: 95px minmax(0, 1fr) !important;
 		gap: 0.5rem !important;
 		width: 100% !important;
-		padding: 0.25rem 0 !important;
+		padding: 0.55rem 0 !important;
 		page-break-inside: avoid;
 	}
 	#experience .timeline.is-timeline .timeline-item,
@@ -1079,7 +1115,7 @@ h3::before {
 		display: grid !important;
 		grid-template-columns: 95px minmax(0, 1fr) !important;
 		gap: 0.5rem !important;
-		padding: 0.25rem 0 !important;
+		padding: 0.55rem 0 !important;
 	}
 	#experience .timeline.is-timeline .timeline-date,
 	#experience .timeline.is-timeline .timeline-content {
@@ -1097,32 +1133,24 @@ h3::before {
 	}
 
 	.timeline-date {
-		font-size: 9px !important;
+		font-size: 10px !important;
 		line-height: 1.4 !important;
 		padding-top: 0.05rem !important;
 	}
 
 	.timeline-content h4 {
-		font-size: 10px !important;
+		font-size: 11px !important;
 		margin-bottom: 0.15rem !important;
 	}
 
 	.timeline-content h5 {
-		font-size: 9.5px !important;
-		margin-bottom: 0.2rem !important;
+		font-size: 10.5px !important;
+		margin-bottom: 0.3rem !important;
 	}
 
 	.timeline-content li {
-		margin-bottom: 0.12rem !important;
-		line-height: 1.22 !important;
-	}
-	#experience .timeline-date { font-size: 9px !important; line-height: 1.2 !important; }
-	#experience .timeline-content h4 { font-size: 10px !important; }
-	#experience .timeline-content h5 { font-size: 9px !important; margin-bottom: 0.12rem !important; line-height: 1.2 !important; }
-	#experience .timeline-content li {
-		font-size: 9px !important;
-		margin-bottom: 0.08rem !important;
-		line-height: 1.18 !important;
+		margin-bottom: 0.2rem !important;
+		line-height: 1.35 !important;
 	}
 
 	/* Beim Drucken immer die kompakte Listenansicht verwenden. */
@@ -1163,53 +1191,42 @@ h3::before {
 	/* ── Skills Grid: drei Spalten für besser lesbare Karten ── */
 	.skills-grid {
 		grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-		align-items: stretch !important;
-		gap: 0.3rem !important;
-		margin: 0.55rem 0 !important;
+		gap: 0.4rem !important;
+		margin: 0.5rem 0 !important;
 	}
-	#skills { padding-top: 0 !important; }
-	#skills h3 { margin: 0.25rem 0 0.4rem !important; }
 
 	.skill-card {
-		padding: 0.45rem !important;
-		text-align: center !important;
+		padding: 0.55rem !important;
 		box-shadow: none !important;
 		border: 1px solid #ddd !important;
 	}
 
 	.skill-card li {
-		font-size: 9.5px !important;
-		line-height: 1.25 !important;
-		margin-bottom: 0.2rem !important;
+		line-height: 1.3 !important;
+		margin-bottom: 0.3rem !important;
 	}
 
 	.skill-card .icon {
 		display: block !important;
-		font-size: 1.2rem !important;
+		font-size: 1.4rem !important;
 		line-height: 1 !important;
-		margin: 0 auto 0.28rem !important;
+		margin: 0 auto 0.35rem !important;
 	}
 
 	.skill-card h4 {
-		font-size: 0.76rem !important;
-		line-height: 1.15 !important;
-		margin: 0 0 0.42rem !important;
-	}
-	.skill-card ul {
-		margin: 0 !important;
-		padding-left: 1rem !important;
-		text-align: left !important;
+		font-size: 0.8rem !important;
+		margin: 0 0 0.8rem !important;
 	}
 
 	/* ── Info-Liste ── */
 	.info-box {
-		padding: 0.6rem !important;
-		margin: 0.4rem 0 !important;
+		padding: 0.75rem !important;
+		margin: 0.5rem 0 !important;
 	}
 
 	.info-list {
 		grid-template-columns: repeat(3, 1fr) !important;
-		gap: 0.3rem !important;
+		gap: 0.5rem !important;
 	}
 
 	.info-list li {
