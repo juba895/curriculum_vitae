@@ -16,43 +16,34 @@
 		<script src="assets/js/cv.js" defer></script>
 	</head>
 	<body>
-		<!-- Sidebar -->
-		<div class="sidebar">
-			<div class="avatar">
-				<img src="images/avatar.jpg" alt="Julian Banek - Profilbild" />
-			</div>
-			<h1><a href="#">Julian Banek</a></h1>
-			<p class="subtitle">Senior Software Engineer</p>
-
-			<div class="sidebar-divider" aria-hidden="true"></div>
-			<nav>
-				<ul>
-					<li><a href="#about" class="active" data-i18n="nav.about">Über mich</a></li>
-					<li><a href="#skills" data-i18n="nav.skills">Fachliche Fähigkeiten</a></li>
-					<li><a href="#experience" data-i18n="nav.experience">Berufserfahrung</a></li>
-					<li><a href="#education" data-i18n="nav.education">Bildung</a></li>
-					<li><a href="#hobbies" data-i18n="nav.hobbies">Hobbys</a></li>
-				</ul>
-			</nav>
-			<div class="sidebar-divider" aria-hidden="true"></div>
-			
-			<div class="social-icons">
-				<a href="https://www.xing.com/profile/Julian_Banek/" aria-label="Xing Profil">
-					<i class="fab fa-xing"></i>
+		<header class="site-header">
+			<div class="site-header__inner">
+				<a class="site-brand" href="#about" aria-label="Julian Banek – Startseite">
+					<span class="avatar"><img src="images/avatar.jpg" alt="" aria-hidden="true" /></span>
+					<span class="site-brand__name" aria-hidden="true">Julian</span>
 				</a>
-				<a href="https://github.com/juba895/curriculum_vitae" aria-label="GitHub Profil">
-					<i class="fab fa-github"></i>
-				</a>
-				<a href="mailto:julian.banek@web.de" aria-label="E-Mail senden">
-					<i class="fas fa-envelope"></i>
-				</a>
+				<nav class="site-nav" aria-label="Hauptnavigation">
+					<ul>
+						<li><a href="#about" class="active" data-i18n="nav.about">Über mich</a></li>
+						<li><a href="#skills" data-i18n="nav.skills">Fachliche Fähigkeiten</a></li>
+						<li><a href="#experience" data-i18n="nav.experience">Berufserfahrung</a></li>
+						<li><a href="#education" data-i18n="nav.education">Bildung</a></li>
+						<li><a href="#hobbies" data-i18n="nav.hobbies">Hobbys</a></li>
+					</ul>
+				</nav>
+				<div class="site-header__actions">
+					<div class="social-icons">
+						<a href="https://www.xing.com/profile/Julian_Banek/" aria-label="Xing Profil"><i class="fab fa-xing"></i></a>
+						<a href="https://github.com/juba895/curriculum_vitae" aria-label="GitHub Profil"><i class="fab fa-github"></i></a>
+						<a href="mailto:julian.banek@web.de" aria-label="E-Mail senden"><i class="fas fa-envelope"></i></a>
+					</div>
+					<div class="language-switch" role="group" aria-label="Sprache auswählen">
+						<a class="language-option is-active" href="index.html" lang="de" aria-current="page"><img class="language-flag" src="images/flags/de.svg" alt="" aria-hidden="true" />DE</a>
+						<a class="language-option" href="index_en.html" lang="en"><img class="language-flag" src="images/flags/en.svg" alt="" aria-hidden="true" />EN</a>
+					</div>
+				</div>
 			</div>
-			<div class="sidebar-divider" aria-hidden="true"></div>
-			<div class="language-switch" role="group" aria-label="Sprache auswählen">
-				<a class="language-option is-active" href="index.html" lang="de" aria-current="page"><img class="language-flag" src="images/flags/de.svg" alt="" aria-hidden="true" />DE</a>
-				<a class="language-option" href="index_en.html" lang="en"><img class="language-flag" src="images/flags/en.svg" alt="" aria-hidden="true" />EN</a>
-			</div>
-		</div>
+		</header>
 
 		<!-- Main Content -->
 		<div class="main-content">

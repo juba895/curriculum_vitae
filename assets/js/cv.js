@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	updateActiveNavigation();
 
 	// Lightbox for avatar
-	const avatar = document.querySelector('.sidebar .avatar');
+	const avatar = document.querySelector('.site-header .avatar');
 	const lightbox = document.getElementById('avatarLightbox');
 	if (avatar && lightbox) {
 		avatar.addEventListener('click', () => lightbox.classList.add('active'));
