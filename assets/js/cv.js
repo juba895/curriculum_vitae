@@ -140,7 +140,6 @@ document.addEventListener('DOMContentLoaded', function() {
 				const activeLink = document.querySelector(`nav a[href="#${section.id}"]`);
 				if (activeLink) {
 					activeLink.classList.add('active');
-					revealNavigationLink(activeLink);
 				}
 			}
 		});
