@@ -76,6 +76,9 @@
 		color: #f3f6fc !important;
 		page-break-inside: avoid;
 	}
+	/* The screen layout places the full-width hero outside .container.
+	   Keep the original print inset that came from the container padding. */
+	#about > .hero { margin-right: 0.5rem !important; margin-left: 0.5rem !important; }
 	.hero__top,
 	.hero-terminal,
 	.hero__footer,
