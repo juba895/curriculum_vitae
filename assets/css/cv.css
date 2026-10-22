@@ -781,8 +781,7 @@ h3::before {
 	}
 	.site-nav a:hover,
 	.site-nav a.active { background: rgba(143,181,213,0.18); color: #fff; }
-	.site-header__actions { display: none; }
-	body.mobile-nav-open .site-header__actions {
+	.site-header__actions {
 		position: fixed;
 		left: 0;
 		bottom: 0;
@@ -796,6 +795,15 @@ h3::before {
 		padding: 0.75rem 0.9rem max(1rem, env(safe-area-inset-bottom));
 		border-top: 1px solid rgba(255,255,255,0.14);
 		background: #1e2530;
+		transform: translateX(-105%);
+		visibility: hidden;
+		pointer-events: none;
+		transition: transform 0.35s cubic-bezier(0.22, 0.68, 0, 1), visibility 0.35s;
+	}
+	body.mobile-nav-open .site-header__actions {
+		transform: translateX(0);
+		visibility: visible;
+		pointer-events: auto;
 	}
 }
 
@@ -809,6 +817,7 @@ h3::before {
 
 @media screen and (max-width: 600px) and (prefers-reduced-motion: reduce) {
 	.site-nav,
+	.site-header__actions,
 	.site-nav-toggle,
 	.main-content { transition: none !important; }
 }
