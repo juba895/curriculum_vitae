@@ -707,4 +707,8 @@ h3::before {
 	.section { scroll-margin-top: 132px; }
 }
 
+@media (max-width: 700px) {
+	.info-list { grid-template-columns: 1fr; }
+}
+
 /* End of base CV styles. */
