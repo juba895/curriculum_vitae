@@ -230,7 +230,11 @@
 	.hero__portrait {
 		grid-column: 1;
 		grid-row: auto;
-		width: clamp(96px, 28vw, 120px);
+		width: 100%;
+		max-width: none;
+		aspect-ratio: 4 / 3;
+		border-radius: 16px;
+		object-position: center 25%;
 	}
 	.hero__intro {
 		grid-column: 1;

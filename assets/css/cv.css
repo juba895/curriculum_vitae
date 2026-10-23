@@ -762,7 +762,7 @@ h3::before {
 	body.mobile-nav-open .site-nav { transform: translateX(0); visibility: visible; }
 	body.mobile-nav-open .site-nav-toggle { right: max(0.75rem, env(safe-area-inset-right)); }
 	.main-content { transition: transform 0.35s cubic-bezier(0.22, 0.68, 0, 1); }
-	body.mobile-nav-open .main-content { transform: translateX(78vw); }
+	body.mobile-nav-open .main-content { transform: translateX(calc(78vw - 2px)); }
 	.site-nav ul {
 		display: grid;
 		grid-template-columns: 1fr;
@@ -808,7 +808,7 @@ h3::before {
 }
 
 @media screen and (min-width: 370px) and (max-width: 600px) {
-	body.mobile-nav-open .main-content { transform: translateX(18rem); }
+	body.mobile-nav-open .main-content { transform: translateX(calc(18rem - 2px)); }
 }
 
 @media screen and (max-width: 700px) {
