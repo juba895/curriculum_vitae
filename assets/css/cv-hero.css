@@ -107,6 +107,7 @@
 
 .hero__title::after { display: none; }
 .hero__title span { color: var(--hero-accent); }
+.hero__online-link { display: none; }
 
 .hero__description {
 	max-width: 34rem;

@@ -64,7 +64,7 @@
 		margin-top: 0.15rem !important;
 	}
 	.hero {
-		margin-bottom: 0.45rem !important;
+		margin-bottom: 1.2rem !important;
 		left: auto !important;
 		width: auto !important;
 		margin-left: 0 !important;
@@ -103,6 +103,20 @@
 	.hero__title::after { display: none !important; }
 	.hero__title span { color: #8fb5d5 !important; }
 	.hero__eyebrow { color: #8fb5d5 !important; font-size: 7px !important; }
+	.hero__online-link {
+		display: flex !important;
+		position: absolute;
+		bottom: 0.45rem;
+		right: 0.65rem;
+		align-items: center;
+		gap: 0.3rem;
+		margin: 0 !important;
+		color: #d1d9e4;
+		font-size: 8px;
+		line-height: 1.2;
+		white-space: nowrap;
+	}
+	.hero__online-link a { color: #d1d9e4; text-decoration: underline; }
 	.hero__description { color: #d1d9e4 !important; font-size: 9px !important; line-height: 1.25 !important; }
 	.hero__tags { margin: 0.35rem 0 !important; }
 	.hero__tags li { border-color: #dbe2e8 !important; color: #2c3e50 !important; }
