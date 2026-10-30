@@ -28,26 +28,27 @@ Open `index.html` in a browser to view the German CV, or open `index_en.html` fo
 
 ## Generate PDF
 
-Requirements: **Microsoft Edge** must be installed.
+Requirements: **PowerShell 7** and **Microsoft Edge** must be installed. The script works on Windows and macOS.
 
 ```powershell
 # Default – creates "Julian_Banek_CV.pdf"
-.\generate-pdf.ps1
+pwsh ./generate-pdf.ps1
 
 # Open PDF immediately after creation
-.\generate-pdf.ps1 -Open
+pwsh ./generate-pdf.ps1 -Open
 
 # Custom file name
-.\generate-pdf.ps1 -OutputName "Banek_Julian_CV.pdf"
+pwsh ./generate-pdf.ps1 -OutputName "Banek_Julian_CV.pdf"
 
 # English version (German is the default)
-.\generate-pdf.ps1 -Language en
+pwsh ./generate-pdf.ps1 -Language en
 
 # English version with a custom file name, then open the PDF
-.\generate-pdf.ps1 -Language en -OutputName "Julian_Banek_CV_EN.pdf" -Open
+pwsh ./generate-pdf.ps1 -Language en -OutputName "Julian_Banek_CV_EN.pdf" -Open
 ```
 
 > **Note:** If the script fails because the file is still open, close your PDF viewer first and run the command again.
+> If Edge is installed in a non-standard location, set `EDGE_PATH` to its executable path before running the script.
 
 ---
 

@@ -1,10 +1,10 @@
 # ============================================================
 # generate-pdf.ps1
 # Generiert ein PDF des Lebenslaufs via Microsoft Edge (headless)
-# Aufruf: .\generate-pdf.ps1
-#         .\generate-pdf.ps1 -OutputName "MeinCV.pdf"
-#         .\generate-pdf.ps1 -Language en
-#         .\generate-pdf.ps1 -Open
+# Aufruf: pwsh ./generate-pdf.ps1
+#         pwsh ./generate-pdf.ps1 -OutputName "MeinCV.pdf"
+#         pwsh ./generate-pdf.ps1 -Language en
+#         pwsh ./generate-pdf.ps1 -Open
 # ============================================================
 
 param(
@@ -14,14 +14,43 @@ param(
     [switch]$Open
 )
 
-$edgePath = "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
+$edgeCandidates = @()
 
-if (-not (Test-Path $edgePath)) {
-    Write-Error "Microsoft Edge nicht gefunden: $edgePath"
+if ($env:EDGE_PATH) {
+    $edgeCandidates += $env:EDGE_PATH
+}
+
+if ($IsWindows) {
+    $programFilesX86 = [Environment]::GetEnvironmentVariable("ProgramFiles(x86)")
+    if ($programFilesX86) {
+        $edgeCandidates += Join-Path $programFilesX86 "Microsoft\Edge\Application\msedge.exe"
+    }
+
+    $programFiles = [Environment]::GetFolderPath("ProgramFiles")
+    if ($programFiles) {
+        $edgeCandidates += Join-Path $programFiles "Microsoft\Edge\Application\msedge.exe"
+    }
+} elseif ($IsMacOS) {
+    $edgeCandidates += "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge"
+    $edgeCandidates += Join-Path $HOME "Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge"
+}
+
+$edgeCommand = Get-Command "msedge" -ErrorAction SilentlyContinue
+if ($edgeCommand) {
+    $edgeCandidates += $edgeCommand.Source
+}
+
+$edgePath = $edgeCandidates |
+    Where-Object { $_ -and (Test-Path -LiteralPath $_ -PathType Leaf) } |
+    Select-Object -First 1
+
+if (-not $edgePath) {
+    Write-Error "Microsoft Edge nicht gefunden. Installiere Edge oder setze EDGE_PATH auf den Pfad zur Edge-Anwendung."
     exit 1
 }
 
 $scriptDir  = Split-Path -Parent $MyInvocation.MyCommand.Path
+$printShortcut = if ($IsMacOS) { "Cmd+P" } else { "Strg+P" }
 $htmlFileName = if ($Language -eq "en") { "index_en.html" } else { "index.html" }
 $htmlFile   = Join-Path $scriptDir $htmlFileName
 $outputPdf  = Join-Path $scriptDir $OutputName
@@ -31,8 +60,7 @@ if (-not (Test-Path $htmlFile)) {
     exit 1
 }
 
-# Pfad als file:// URL formatieren (Backslashes → Slashes)
-$fileUrl = "file:///" + ($htmlFile -replace '\\', '/')
+$fileUrl = ([System.Uri]::new($htmlFile)).AbsoluteUri
 
 Write-Host ""
 Write-Host "  📄  Generiere PDF..." -ForegroundColor Cyan
@@ -59,31 +87,44 @@ $edgeArgs = @(
     "--disable-extensions"
     "--run-all-compositor-stages-before-draw"
     "--virtual-time-budget=8000"          # 8 s warten – Animationen / Fonts
-    "--print-to-pdf=`"$outputPdf`""
+    "--print-to-pdf=$outputPdf"
     "--no-pdf-header-footer"
-    "`"$fileUrl`""
+    $fileUrl
 )
 
-Start-Process -FilePath $edgePath -ArgumentList $edgeArgs -Wait -NoNewWindow
+& $edgePath @edgeArgs
+$edgeExitCode = $LASTEXITCODE
+if ($edgeExitCode -ne 0) {
+    Write-Error "Microsoft Edge wurde mit Fehlercode $edgeExitCode beendet."
+    exit $edgeExitCode
+}
 
-if (Test-Path $outputPdf) {
-    $fileTime = (Get-Item $outputPdf).LastWriteTime
-    if ($fileTime -lt $startTime) {
-        Write-Host "  ❌  PDF-Generierung fehlgeschlagen (Datei wurde nicht aktualisiert)." -ForegroundColor Red
-        Write-Host "      Tipp: Öffne index.html manuell in Edge und drucke mit Strg+P → 'Als PDF speichern'." -ForegroundColor Yellow
-        exit 1
+$outputFile = $null
+$outputDeadline = (Get-Date).AddSeconds(30)
+while ((Get-Date) -lt $outputDeadline) {
+    $outputFile = Get-Item -LiteralPath $outputPdf -Force -ErrorAction SilentlyContinue
+    if ($outputFile -and $outputFile.Length -gt 0) {
+        break
     }
-    $size = [math]::Round((Get-Item $outputPdf).Length / 1KB, 1)
+    Start-Sleep -Milliseconds 250
+}
+
+if ($outputFile -and $outputFile.Length -gt 0) {
+    $size = [math]::Round($outputFile.Length / 1KB, 1)
     Write-Host "  ✅  PDF erfolgreich erstellt  ($size KB)" -ForegroundColor Green
     Write-Host "  Pfad: $outputPdf" -ForegroundColor Gray
 
     if ($Open) {
         Write-Host "  🔍  Öffne PDF..." -ForegroundColor Cyan
-        Start-Process $outputPdf
+        if ($IsWindows) {
+            Start-Process -FilePath $outputPdf
+        } elseif ($IsMacOS) {
+            & open $outputPdf
+        }
     }
 } else {
     Write-Host "  ❌  PDF-Generierung fehlgeschlagen." -ForegroundColor Red
-    Write-Host "      Tipp: Öffne index.html manuell in Edge und drucke mit Strg+P → 'Als PDF speichern'." -ForegroundColor Yellow
+    Write-Host "      Tipp: Öffne $htmlFileName manuell in Edge und drucke mit $printShortcut → 'Als PDF speichern'." -ForegroundColor Yellow
     exit 1
 }
 
