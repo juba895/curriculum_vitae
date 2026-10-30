@@ -150,6 +150,10 @@
 		break-inside: avoid-page;
 		page-break-inside: avoid;
 	}
+	html[lang="en"] #education {
+		break-before: page;
+		page-break-before: always;
+	}
 	#hobbies { page-break-before: auto; }
 	#hobbies { padding-top: 1.25rem !important; }
 
